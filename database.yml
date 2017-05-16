@@ -1,0 +1,26 @@
+production:
+  adapter: <%= ENV['DB_ADAPTER'] ||= 'mysql2' %>
+  database: <%= ENV['DATABASE_NAME'] ||= 'redmine' %>
+  host: <%= ENV['DATABASE_HOST'] ||= 'mysql' %>
+  username: <%= ENV['DATABASE_USERNAME'] ||= 'redmine' %>
+  password: <%= ENV['DATABASE_PASSWORD'] ||= 'redmine' %>
+  encoding: utf8
+  variables:
+    # These are the default MySql Modes for rails 5.0 only excluding
+    # ONLY_FULL_GROUP_BY which would interfere with the current implementation
+    # of the query grouping by custom fields.
+    sql_mode:
+      "no_auto_value_on_zero,\
+      strict_trans_tables,\
+      no_zero_date,\
+      strict_all_tables,\
+      no_zero_in_date,\
+      error_for_division_by_zero,\
+      no_auto_create_user,\
+      no_engine_substitution"
+
+development:
+  adapter: sqlite3
+  database: ":memory:"
+  pool: 5
+  timeout: 5000

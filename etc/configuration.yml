@@ -1,0 +1,13 @@
+default:
+  scm:
+    git:
+#     client_command: /usr/local/bin/git
+      disabled_types:
+        - :local
+      manages: /opt/app-root/data/git
+    subversion:
+#     check what following does
+#     trustedssl: true
+      disabled_types:
+        - :existing
+      manages: /opt/app-root/data/svn

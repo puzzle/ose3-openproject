@@ -1,0 +1,21 @@
+#!/bin/bash
+set -xe
+
+echo "---> Installing application source..."
+cp -Rf /tmp/src/. ./
+
+sed -i /^ruby/d Gemfile
+
+#scl enable rh-nodejs4 "npm install -g npm@4.0 bower"
+sed -ie '/^\s*links.*api_experimental_query_path(query).*$/ { N; d; }' app/controllers/api/experimental/concerns/query_loading.rb
+
+mkdir -p /opt/app-root/data/{git,svn}
+ln -snf /opt/app-root/src/files /opt/app-root/data/files
+
+scl enable rh-ruby23 "bundle install --path .bundle --jobs 4 || bundle"
+
+scl enable rh-nodejs4 "cd frontend && npm install && bower install --allow-root"
+# Fix git clone needing a user in /etc/passwd
+git config user.name Openshift
+git config user.email systems@puzzle.ch
+scl enable rh-ruby23 rh-nodejs4 "DATABASE_URL=sqlite3:///tmp/db.sqlite3 bundle exec rake assets:precompile"

@@ -1,0 +1,918 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "openproject"
+    },
+    "objects": [
+        {
+            "kind": "PersistentVolumeClaim",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "openproject"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteMany"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "5Gi"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "PersistentVolumeClaim",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "mysql"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteMany"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "openproject",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "jts8NLAcXaxISFMbHGS5"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "X6kG2ARt4cAfba93s_8q"
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://gitlab.puzzle.ch/pitc_sys/openproject-openshift.git"
+                    },
+                    "sourceSecret": {
+                        "name": "pitc-basicauth-git"
+                    }
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "dockerStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "ose3-unicorn:latest"
+                        },
+                        "env": [
+                            {
+                                "name": "OPENPROJECT_VERSION",
+                                "value": "${OPENPROJECT_VERSION}"
+                            }
+                        ]
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "openproject:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {}
+            },
+            "status": {
+                "lastVersion": 0
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "mysql",
+                "labels": {
+                    "app": "openproject",
+                    "template": "mysql-persistent-template"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Recreate",
+                    "recreateParams": {
+                        "timeoutSeconds": 600
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "mysql"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "namespace": "openshift",
+                                "name": "mysql:5.7"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "name": "mysql"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "name": "mysql"
+                        }
+                    },
+                    "spec": {
+                        "volumes": [
+                            {
+                                "name": "mysql",
+                                "persistentVolumeClaim": {
+                                    "claimName": "mysql"
+                                }
+                            }
+                        ],
+                        "containers": [
+                            {
+                                "name": "mysql",
+                                "image": "registry.access.redhat.com/rhscl/mysql-57-rhel7:latest",
+                                "ports": [
+                                    {
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "MYSQL_USER",
+                                        "value": "${MYSQL_DB_USERNAME}"
+                                    },
+                                    {
+                                        "name": "MYSQL_PASSWORD",
+                                        "value": "${MYSQL_DB_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "MYSQL_DATABASE",
+                                        "value": "${MYSQL_DB_NAME}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_MANAGED_REPOS",
+                                        "value": "${OPENPROJECT_MANAGED_REPOS}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "volumeMounts": [
+                                    {
+                                        "name": "mysql",
+                                        "mountPath": "/var/lib/mysql/data"
+                                    }
+                                ],
+                                "livenessProbe": {
+                                    "tcpSocket": {
+                                        "port": 3306
+                                    },
+                                    "initialDelaySeconds": 30,
+                                    "timeoutSeconds": 1,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
+                                },
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sh",
+                                            "-i",
+                                            "-c",
+                                            "MYSQL_PWD=\"$MYSQL_PASSWORD\" mysql -h 127.0.0.1 -u $MYSQL_USER -D $MYSQL_DATABASE -e 'SELECT 1'"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 1,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "IfNotPresent"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {
+                "observedGeneration": 2,
+                "replicas": 1,
+                "updatedReplicas": 1,
+                "availableReplicas": 1
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "openproject",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%",
+                        "pre": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "command": [
+                                    "/usr/bin/bash",
+                                    "-c",
+                                    "/opt/app-root/bin/deploy.sh"
+                                ],
+                                "containerName": "openproject"
+                            }
+
+                        }
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "openproject"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "openproject:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "openproject",
+                    "deploymentconfig": "openproject"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "openproject",
+                            "deploymentconfig": "openproject"
+                        }
+                    },
+                    "spec": {
+                        "volumes": [
+                            {
+                                "name": "openproject",
+                                "persistentVolumeClaim": {
+                                    "claimName": "openproject"
+                                }
+                            }
+                        ],
+                        "containers": [
+                            {
+                                "name": "openproject",
+                                "image": "openproject",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "RAILS_ENV",
+                                        "value": "production"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_VERSION",
+                                        "value": "${OPENPROJECT_VERSION}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
+                                        "value": "${OPENPROJECT_PLUGIN_DOCUMENTS}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_PLUGIN_BACKLOGS",
+                                        "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
+                                    },
+                                    {
+                                        "name": "DATABASE_NAME",
+                                        "value": "${MYSQL_DB_NAME}"
+                                    },
+                                    {
+                                        "name": "DATABASE_HOST",
+                                        "value": "${MYSQL_DB_HOST}"
+                                    },
+                                    {
+                                        "name": "DATABASE_USERNAME",
+                                        "value": "${MYSQL_DB_USERNAME}"
+                                    },
+                                    {
+                                        "name": "DATABASE_PASSWORD",
+                                        "value": "${MYSQL_DB_PASSWORD}"
+                                    }
+                                ],
+                                "resources": {},
+                                "volumeMounts": [
+                                    {
+                                        "name": "openproject",
+                                        "mountPath": "/opt/app-root/data"
+                                    }
+                                ],
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {
+                "observedGeneration": 7,
+                "replicas": 1,
+                "updatedReplicas": 1,
+                "availableReplicas": 1
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "openproject-cron",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "openproject-cron"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "openproject:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "deploymentconfig": "openproject-cron"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "openproject",
+                            "deploymentconfig": "openproject-cron"
+                        }
+                    },
+                    "spec": {
+                        "volumes": [
+                            {
+                                "name": "openproject",
+                                "persistentVolumeClaim": {
+                                    "claimName": "openproject"
+                                }
+                            }
+                        ],
+                        "containers": [
+                            {
+                                "name": "openproject-cron",
+                                "image": "openproject",
+                                "command": [
+                                    "devcron.py"
+                                ],
+                                "args": [
+                                    "/opt/app-root/etc/crontab"
+                                ],
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "RAILS_ENV",
+                                        "value": "production"
+                                    },
+                                    {
+                                        "name": "REDMINE_MAIL_INTEGRATION",
+                                        "value": "${REDMINE_MAIL_INTEGRATION}"
+                                    },
+                                    {
+                                        "name": "MANAGE_GIT_REPOS",
+                                        "value": "${MANAGE_GIT_REPOS}"
+                                    },
+                                    {
+                                        "name": "GIT_CREDENTIALS_gitlab_puzzle_ch",
+                                        "value": "${GIT_CREDENTIALS_gitlab_puzzle_ch}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_HOST",
+                                        "value": "${RAILS_MAIL_IMAP_HOST}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_PORT",
+                                        "value": "${RAILS_MAIL_IMAP_PORT}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_SSL",
+                                        "value": "${RAILS_MAIL_IMAP_SSL}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_USERNAME",
+                                        "value": "${RAILS_MAIL_IMAP_USERNAME}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_PASSWORD",
+                                        "value": "${RAILS_MAIL_IMAP_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "DATABASE_NAME",
+                                        "value": "${MYSQL_DB_NAME}"
+                                    },
+                                    {
+                                        "name": "DATABASE_HOST",
+                                        "value": "${MYSQL_DB_HOST}"
+                                    },
+                                    {
+                                        "name": "DATABASE_USERNAME",
+                                        "value": "${MYSQL_DB_USERNAME}"
+                                    },
+                                    {
+                                        "name": "DATABASE_PASSWORD",
+                                        "value": "${MYSQL_DB_PASSWORD}"
+                                    }
+                                ],
+                                "resources": {},
+                                "volumeMounts": [
+                                    {
+                                        "name": "openproject",
+                                        "mountPath": "/opt/app-root/data"
+                                    }
+                                ],
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {
+                "observedGeneration": 7,
+                "replicas": 1,
+                "updatedReplicas": 1,
+                "availableReplicas": 1
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "mysql-backup-persistent",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "mysql-simple-backup-container"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "mysql-simple-backup-container:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "deploymentconfig": "mysql-backup-persistent"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "deploymentconfig": "mysql-backup-persistent"
+                        }
+                    },
+                    "spec": {
+                        "volumes": [
+                            {
+                                "name": "mysql",
+                                "persistentVolumeClaim": {
+                                    "claimName": "mysql"
+                                }
+                            }
+                        ],
+                        "containers": [
+                            {
+                                "name": "mysql-simple-backup-container",
+                                "image": "mysql-simple-backup-container",
+                                "env": [
+                                    {
+                                        "name": "MYSQL_USER",
+                                        "value": "${MYSQL_DB_USERNAME}"
+                                    },
+                                    {
+                                        "name": "MYSQL_PASSWORD",
+                                        "value": "${MYSQL_DB_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "MYSQL_SERVICE_HOST",
+                                        "value": "mysql"
+                                    },
+                                    {
+                                        "name": "MYSQL_DATABASE",
+                                        "value": "${MYSQL_DB_NAME}"
+                                    }
+                                ],
+                                "resources": {},
+                                "volumeMounts": [
+                                    {
+                                        "name": "mysql",
+                                        "mountPath": "/opt/app-root/data/backup"
+                                    }
+                                ],
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {}
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "mysql",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "openproject",
+                    "template": "mysql-persistent-template"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "mysql",
+                        "protocol": "TCP",
+                        "port": 3306,
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {
+                    "name": "mysql"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "openproject",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "openproject",
+                    "deploymentconfig": "openproject"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "openproject",
+                "labels": {
+                    "app": "openproject"
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "ose3-unicorn",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "dockerImageRepository": "puzzle/ose3-unicorn"
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "mysql-simple-backup-container",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "dockerImageRepository": "puzzle/mysql-simple-backup-container"
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "ssl",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "host": "${APPLICATION_DOMAIN}",
+                "to": {
+                    "kind": "Service",
+                    "name": "openproject"
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                },
+                "tls": {
+                    "termination": "edge",
+                    "insecureEdgeTerminationPolicy": "Redirect"
+                }
+            },
+            "status": {
+                "ingress": null
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "extssl",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "host": "${APPLICATION_DOMAIN_EXT}",
+                "to": {
+                    "kind": "Service",
+                    "name": "openproject"
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                },
+                "tls": {
+                    "termination": "edge",
+                    "insecureEdgeTerminationPolicy": "Redirect"
+                }
+            },
+            "status": {
+                "ingress": null
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "name": "OPENPROJECT_VERSION",
+            "description": "The release tag of Openproject on Github",
+            "value": "v6.1.5"
+        },
+        {
+            "name": "APPLICATION_DOMAIN",
+            "description": "The exposed hostname that will route to the statusnet service, if left blank a value will be defaulted."
+        },
+        {
+            "name": "APPLICATION_DOMAIN_EXT",
+            "description": "The external hostname (redmine.puzzle.ch) that will route to the statusnet service, if left blank a value will be defaulted."
+        },
+        {
+            "name": "MYSQL_DB_HOST",
+            "description": "Database host name",
+            "value": "mysql"
+        },
+        {
+            "name": "MYSQL_DB_PORT",
+            "description": "Database port",
+            "value": "3306"
+        },
+        {
+            "name": "MYSQL_DB_NAME",
+            "description": "Database name",
+            "value": "redmine"
+        },
+        {
+            "name": "MYSQL_DB_USERNAME",
+            "description": "Database user name",
+            "value": "redmine"
+        },
+        {
+            "name": "MYSQL_DB_PASSWORD",
+            "description": "Database user password",
+            "value": "redmine"
+        },
+        {
+            "name": "REDMINE_MAIL_INTEGRATION",
+            "description": "Enable Mail integration cronjob",
+            "value": "true"
+        },
+        {
+            "name": "MANAGE_GIT_REPOS",
+            "description": "Enable Git integration cronjob",
+            "value": "true"
+        },
+        {
+            "name": "OPENPROJECT_MANAGED_REPOS",
+            "description": "Enable managed repositories (seperate Apache config needed)",
+            "value": "false"
+        },
+        {
+            "name": "OPENPROJECT_PLUGIN_BACKLOGS",
+            "description": "Enable backlogs plugin",
+            "value": "true"
+        },
+        {
+            "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
+            "description": "Enable documents plugin",
+            "value": "false"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_HOST",
+            "description": "Incoming Mail Host server host",
+            "value": "mail.puzzle.ch"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_PORT",
+            "description": "Incoming  Mail port",
+            "value": "993"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_SSL",
+            "description": "Incoming ssl default false",
+            "value": "true"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_USERNAME",
+            "description": "Incoming Imap user",
+            "value": "redmine@puzzle.ch"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_PASSWORD",
+            "description": "Incoming Imap password"
+        },
+        {
+            "name": "GIT_CREDENTIALS_gitlab_puzzle_ch",
+            "description": "Git credentials "
+        },
+        {
+            "name": "BACKUP_DATA_DIR",
+            "description": "Where to store the Backups, typically this directory would be a persistent Volume",
+            "value": "/opt/app-root/backup/"
+        },
+        {
+            "name": "BACKUP_KEEP",
+            "description": "How many Backups are kept",
+            "value": "5"
+        },
+        {
+            "name": "BACKUP_MINUTE",
+            "description": "Cron Minute (eg. 10) ",
+            "value": "10"
+        },
+        {
+            "name": "BACKUP_HOUR",
+            "description": "Cron Hour (eg. 11,19: every day at 11am and 7pm)",
+            "value": "13,21"
+        },
+        {
+            "name": "TZ",
+            "description": "Timezone",
+            "value": "Europe/Zurich"
+        }
+    ]
+}
