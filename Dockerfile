@@ -18,5 +18,7 @@ RUN yum install -y git subversion \
  && yum -y install python python-devel python-pip \
  && pip install devcron \
  && chown -R 1001:1001 /opt/app-root \
- && chmod -R go+rx /opt/app-root/bin
+ && chmod -R go+rx /opt/app-root/bin \
+ && git config --global user.name Openshift \
+ && git config --global user.email systems@puzzle.ch
 USER 1001
