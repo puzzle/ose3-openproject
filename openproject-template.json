@@ -83,7 +83,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "ose3-openproject-is:latest"
+                            "name": "ose3-openproject:latest"
                         }
                     }
                 },
@@ -710,7 +710,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "ose3-openproject-is",
+                "name": "ose3-openproject",
                 "labels": {
                     "app": "openproject"
                 }
