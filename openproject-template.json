@@ -74,25 +74,17 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://gitlab.puzzle.ch/pitc_sys/openproject-openshift.git"
-                    },
-                    "sourceSecret": {
-                        "name": "pitc-basicauth-git"
+                        "uri": "https://github.com/opf/openproject",
+                        "ref": "v6.1.5"
                     }
                 },
                 "strategy": {
-                    "type": "Docker",
-                    "dockerStrategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "ose3-unicorn:latest"
-                        },
-                        "env": [
-                            {
-                                "name": "OPENPROJECT_VERSION",
-                                "value": "${OPENPROJECT_VERSION}"
-                            }
-                        ]
+                            "name": "ose3-openproject:latest"
+                        }
                     }
                 },
                 "output": {
@@ -718,13 +710,21 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "ose3-unicorn",
+                "name": "ose3-openproject",
                 "labels": {
                     "app": "openproject"
                 }
             },
             "spec": {
-                "dockerImageRepository": "puzzle/ose3-unicorn"
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "puzzle/ose3-openproject"
+                        }
+                    }
+                ]
             }
         },
         {
