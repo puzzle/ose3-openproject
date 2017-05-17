@@ -18,5 +18,4 @@ scl enable rh-ruby23 "bundle install --path .bundle --jobs 4 || bundle || bundle
 scl enable rh-nodejs4 "cd frontend && npm install && bower install --allow-root"
 scl enable rh-ruby23 rh-nodejs4 "DATABASE_URL=sqlite3:///tmp/db.sqlite3 bundle exec rake assets:precompile"
 
-chmod go+rwx /opt/app-root/src
-chmod -R go+rwX /opt/app-root/src/.bundle
+chmod -R go+rwX /opt/app-root/src
