@@ -12,7 +12,8 @@ sed -ie '/^\s*links.*api_experimental_query_path(query).*$/ { N; d; }' app/contr
 mkdir -p /opt/app-root/data/{git,svn}
 ln -snf /opt/app-root/src/files /opt/app-root/data/files
 
-scl enable rh-ruby23 "bundle install --path .bundle --jobs 4 || bundle"
+# retry if it fails
+scl enable rh-ruby23 "bundle install --path .bundle --jobs 4 || bundle || bundle"
 
 scl enable rh-nodejs4 "cd frontend && npm install && bower install --allow-root"
 scl enable rh-ruby23 rh-nodejs4 "DATABASE_URL=sqlite3:///tmp/db.sqlite3 bundle exec rake assets:precompile"
