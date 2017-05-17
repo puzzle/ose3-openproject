@@ -19,10 +19,10 @@ RUN yum install -y epel-release \
  && scl enable rh-nodejs4 "npm install -g npm@4.0 bower" \
  && scl enable rh-ruby23 "gem install bundler" \
  && pip install devcron \
- && chown -R 1001:1001 /opt/app-root \
- && chmod -R o+x /opt/app-root/bin \
  && git config --global user.name Openshift \
- && git config --global user.email systems@puzzle.ch
+ && git config --global user.email systems@puzzle.ch \
+ && chown -R 1001:1001 /opt/app-root \
+ && chmod -R o+x /opt/app-root/bin
 
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
