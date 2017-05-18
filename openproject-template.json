@@ -98,7 +98,8 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "name": "ose3-openproject:latest"
-                        }
+                        },
+                        "incremental": true
                     }
                 },
                 "output": {
