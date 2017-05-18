@@ -1,4 +1,4 @@
-FROM centos/ruby-23-centos7
+FROM puzzle/ose3-unicorn
 
 ENV RAILS_ENV production
 ENV SECRET_KEY_BASE aienhat423490g8iretuk
