@@ -13,5 +13,7 @@ RUN apt-get update && apt-get upgrade -y && \
 RUN echo "Include conf.d/*.conf" >> conf/httpd.conf && \
     mkdir conf.d
 COPY repos.conf conf.d/
+ENV OPENPROJECT_SERVICE_HOST openproject
+ENV OPENPROJECT_SERVICE_PORT 8080
 EXPOSE 8080
 USER 1001

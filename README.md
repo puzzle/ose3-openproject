@@ -25,6 +25,10 @@ With persistent Volumes and claims (mysql + uploads, Git dir) make sure that glu
 ```
 $ oc new-app -f openproject-template.json -p APPLICATION_DOMAIN_EXT=openproject-stg.puzzle.ch,RAILS_MAIL_IMAP_PASSWORD=***,GIT_CREDENTIALS_gitlab_puzzle_ch=hudson:***
 ```
+If you are using managed repositories and would like to serve them via apache:
+```
+$ oc new-app puzzle/ose3-openproject:apache -e OPENPROJECT_API_KEY=***
+```
 
 ## import mysql dump
 ```
