@@ -751,7 +751,7 @@
             "kind": "Route",
             "apiVersion": "v1",
             "metadata": {
-                "name": "ssl",
+                "name": "openproject",
                 "creationTimestamp": null,
                 "labels": {
                     "app": "openproject"
@@ -765,10 +765,6 @@
                 },
                 "port": {
                     "targetPort": "8080-tcp"
-                },
-                "tls": {
-                    "termination": "edge",
-                    "insecureEdgeTerminationPolicy": "Redirect"
                 }
             },
             "status": {
@@ -779,7 +775,7 @@
             "kind": "Route",
             "apiVersion": "v1",
             "metadata": {
-                "name": "extssl",
+                "name": "ssl",
                 "creationTimestamp": null,
                 "labels": {
                     "app": "openproject"
