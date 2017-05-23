@@ -14,8 +14,10 @@ sed -i /^ruby/d Gemfile
 #scl enable rh-nodejs4 "npm install -g npm@4.0 bower"
 sed -ie '/^\s*links.*api_experimental_query_path(query).*$/ { N; d; }' app/controllers/api/experimental/concerns/query_loading.rb
 
-mkdir -p /opt/app-root/data/{git,svn}
-ln -snf /opt/app-root/src/files /opt/app-root/data/files
+mkdir -p /opt/app-root/data/{git,svn,files}
+# delete existing directory
+rm -rf /opt/app-root/src/files
+ln -snf /opt/app-root/data/files /opt/app-root/src/files
 
 # retry if it fails
 scl enable rh-ruby23 "bundle install --path .bundle --jobs 4 || bundle || bundle"
