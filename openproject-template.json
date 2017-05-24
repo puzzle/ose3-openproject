@@ -17,7 +17,7 @@
                 ],
                 "resources": {
                     "requests": {
-                        "storage": "5Gi"
+                        "storage": "${OPENPROJECT_STORAGE}"
                     }
                 }
             }
@@ -863,6 +863,11 @@
             "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
             "description": "Enable documents plugin",
             "value": "false"
+        },
+        {
+            "name": "OPENPROJECT_STORAGE",
+            "description": "Storage size for repositories and attachments",
+            "value": "5Gi"
         },
         {
             "name": "RAILS_MAIL_IMAP_HOST",
