@@ -1,9 +1,9 @@
 # Puzzle Openproject on OpenShift V3
 
-Basicly the openproject application consists out of four containers frontend, a Mysql (+backup) and a Cron container.
+The Openproject application has four containers: frontend, mysql (+backup) and a cron container. If managed repositories are used an additional Apache container is needed.
 
-The state is saved into three persistent Volumes:
-* MySQL Data (/var/lib/mysql/data) typically 1GB
+The state is saved into three persistent volumes:
+* MySQL Data (/var/lib/mysql/data) typically 2GB
 * Openproject (files and repositories) (/opt/app-root/data) typically 5GB
 * MySQL-backup for dumps
 
@@ -20,12 +20,12 @@ $ oc new-project pitc-openproject-stg
 
 ## deploy
 
-With persistent Volumes and claims (mysql + uploads, Git dir) make sure that gluster PVs with the given size(1 GB DB, 2GB Files, 2 GB Git files) are available
+With persistent volumes and claims (mysql and uploads + repositories) make sure that gluster PVs with the given size(2 GB DB, 5GB Files) are available
 
 ```
 $ oc new-app -f openproject-template.json -p APPLICATION_DOMAIN_EXT=openproject-stg.puzzle.ch,RAILS_MAIL_IMAP_PASSWORD=***,GIT_CREDENTIALS_gitlab_puzzle_ch=hudson:***
 ```
-If you are using managed repositories and would like to serve them via apache:
+If you are using managed repositories and would like to serve them via Apache:
 ```
 $ oc new-app puzzle/ose3-openproject:apache -e OPENPROJECT_API_KEY=***
 ```
@@ -53,8 +53,7 @@ redmine-3-build      0/1       Completed   0          48m
 redmine-5-376ju      1/1       Running     0          43m
 
 ```
-Upload Files in directory ./files/ into the container /opt/app-root/src/files
+Upload Files in directory ./files into the container /opt/app-root/data
 ```
-$ oc rsync ./files/ redmine-5-376ju:/opt/app-root/src/
+$ oc rsync files redmine-5-376ju:/opt/app-root/data
 ```
-
