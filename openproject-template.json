@@ -83,14 +83,6 @@
                     "sourceStrategy": {
                         "env": [
                             {
-                                "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
-                                "value": "${OPENPROJECT_PLUGIN_DOCUMENTS}"
-                            },
-                            {
-                                "name": "OPENPROJECT_PLUGIN_BACKLOGS",
-                                "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
-                            },
-                            {
                                 "name": "OPENPROJECT_VERSION",
                                 "value": "${OPENPROJECT_VERSION}"
                             },
@@ -369,6 +361,14 @@
                                     {
                                         "name": "DATABASE_PASSWORD",
                                         "value": "${MYSQL_DB_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
+                                        "value": "${OPENPROJECT_PLUGIN_DOCUMENTS}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_PLUGIN_BACKLOGS",
+                                        "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
                                     }
                                 ],
                                 "resources": {},
