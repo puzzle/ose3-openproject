@@ -1,1 +1,1 @@
-exec foreman start -f /opt/app-root/etc/Procfile -d /opt/app-root/src
+exec bundle exec unicorn -c /opt/app-root/etc/unicorn.rb
