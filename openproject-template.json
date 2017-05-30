@@ -93,6 +93,14 @@
                             {
                                 "name": "OPENPROJECT_VERSION",
                                 "value": "${OPENPROJECT_VERSION}"
+                            },
+                            {
+                                "name": "DATABASE_URL",
+                                "value": "sqlite3:///tmp/db.sqlite3"
+                            },
+                            {
+                                "name": "DISABLE_ASSET_COMPILATION",
+                                "value": "true"
                             }
                         ],
                         "from": {
