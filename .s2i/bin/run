@@ -1,1 +1,0 @@
-exec bundle exec unicorn -c /opt/app-root/etc/unicorn.rb

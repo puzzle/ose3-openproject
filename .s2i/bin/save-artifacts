@@ -1,9 +1,0 @@
-#!/bin/sh -ex
-
-pushd ${HOME} >/dev/null
-
-if [ -d .bundle/ruby ]; then
-  tar cf - .bundle/ruby
-fi
-
-popd >/dev/null

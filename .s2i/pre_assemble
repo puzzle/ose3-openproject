@@ -1,0 +1,4 @@
+#!/bin/bash
+env
+
+scl enable rh-nodejs4 "cd /tmp/src/frontend && npm install && bower install"

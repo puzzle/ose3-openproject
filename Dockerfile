@@ -1,4 +1,4 @@
-FROM centos/ruby-23-centos7
+FROM puzzle/ose3-rails:pure-23
 
 ENV RAILS_ENV production
 ENV SECRET_KEY_BASE aienhat423490g8iretuk
@@ -8,10 +8,10 @@ USER root
 WORKDIR /opt/app-root/src
 
 COPY bin/ /opt/app-root/bin/
-COPY database.yml config/
-COPY production.rb config/environments/
 COPY etc/ /opt/app-root/etc/
-COPY Gemfile.plugins .
+COPY .s2i/ /tmp/src/.s2i
+COPY config/ /tmp/src/config
+COPY Gemfile.plugins /tmp/src
 
 RUN yum install -y epel-release \
  && yum -y update \
@@ -21,9 +21,8 @@ RUN yum install -y epel-release \
  && pip install devcron \
  && git config --global user.name Openshift \
  && git config --global user.email systems@puzzle.ch \
+ && chown -R 1001:1001 /tmp/src \
  && chown -R 1001:1001 /opt/app-root \
  && chmod -R o+x /opt/app-root/bin
-
-COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
 USER 1001
