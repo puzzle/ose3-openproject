@@ -5,10 +5,3 @@ sed -ie '/^\s*links.*api_experimental_query_path(query).*$/ { N; d; }' app/contr
 # delete existing directory
 rm -rf /opt/app-root/src/files
 ln -snf /opt/app-root/data/files /opt/app-root/src/files
-
-# Fix source directory permissions
-fix-permissions ./
-
-mkdir -p /opt/app-root/data
-chmod -R go+rwX /opt/app-root/data
-
