@@ -1,2 +1,7 @@
 #!/bin/bash
+
+if [[ -n "${OPENPROJECT_MANAGED_REPOS}" ]]; then
+    ln -snf /tmp/src/config/configuration.yml /opt/app-root/etc/configuration.yml
+fi
+bundle --path bundle
 scl enable rh-nodejs4 "cd /tmp/src/frontend && npm install && bower install"

@@ -84,7 +84,25 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "name": "ose3-openproject:latest"
-                        }
+                        },
+                        "env": [
+                            {
+                                "name": "OPENPROJECT_VERSION",
+                                "value": "${OPENPROJECT_VERSION}"
+                            },
+                            {
+                                "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
+                                "value": "${OPENPROJECT_PLUGIN_DOCUMENTS}"
+                            },
+                            {
+                                "name": "OPENPROJECT_PLUGIN_BACKLOGS",
+                                "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
+                            },
+                            {
+                                "name": "OPENPROJECT_MANAGED_REPOS",
+                                "value": "${OPENPROJECT_MANAGED_REPOS}"
+                            }
+                        ]
                     }
                 },
                 "output": {
@@ -179,10 +197,6 @@
                                     {
                                         "name": "MYSQL_DATABASE",
                                         "value": "${RAILS_DB_NAME}"
-                                    },
-                                    {
-                                        "name": "OPENPROJECT_MANAGED_REPOS",
-                                        "value": "${OPENPROJECT_MANAGED_REPOS}"
                                     }
                                 ],
                                 "resources": {
@@ -256,29 +270,7 @@
                         "intervalSeconds": 1,
                         "timeoutSeconds": 600,
                         "maxUnavailable": "25%",
-                        "maxSurge": "25%",
-                        "pre": {
-                            "failurePolicy": "Abort",
-                            "execNewPod": {
-                                "command": [
-                                    "/usr/bin/bash",
-                                    "-c",
-                                    "/opt/app-root/bin/deploy.sh"
-                                ],
-                                "containerName": "openproject",
-                                "env": [
-                                    {
-                                        "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
-                                        "value": "${OPENPROJECT_PLUGIN_DOCUMENTS}"
-                                    },
-                                    {
-                                        "name": "OPENPROJECT_PLUGIN_BACKLOGS",
-                                        "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
-                                    }
-                                ]
-                            }
-
-                        }
+                        "maxSurge": "25%"
                     },
                     "resources": {}
                 },
@@ -360,16 +352,8 @@
                                     {
                                         "name": "RAILS_DB_PASSWORD",
                                         "value": "${RAILS_DB_PASSWORD}"
-                                    },
-                                    {
-                                        "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
-                                        "value": "${OPENPROJECT_PLUGIN_DOCUMENTS}"
-                                    },
-                                    {
-                                        "name": "OPENPROJECT_PLUGIN_BACKLOGS",
-                                        "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
                                     }
-                                ],
+                               ],
                                 "resources": {},
                                 "volumeMounts": [
                                     {
