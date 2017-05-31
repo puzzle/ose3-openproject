@@ -83,14 +83,6 @@
                     "sourceStrategy": {
                         "env": [
                             {
-                                "name": "OPENPROJECT_VERSION",
-                                "value": "${OPENPROJECT_VERSION}"
-                            },
-                            {
-                                "name": "DATABASE_URL",
-                                "value": "sqlite3:///tmp/db.sqlite3"
-                            },
-                            {
                                 "name": "DISABLE_ASSET_COMPILATION",
                                 "value": "true"
                             }
@@ -185,15 +177,15 @@
                                 "env": [
                                     {
                                         "name": "MYSQL_USER",
-                                        "value": "${MYSQL_DB_USERNAME}"
+                                        "value": "${RAILS_DB_USERNAME}"
                                     },
                                     {
                                         "name": "MYSQL_PASSWORD",
-                                        "value": "${MYSQL_DB_PASSWORD}"
+                                        "value": "${RAILS_DB_PASSWORD}"
                                     },
                                     {
                                         "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DB_NAME}"
+                                        "value": "${RAILS_DB_NAME}"
                                     },
                                     {
                                         "name": "OPENPROJECT_MANAGED_REPOS",
@@ -357,20 +349,24 @@
                                         "value": "${OPENPROJECT_VERSION}"
                                     },
                                     {
-                                        "name": "DATABASE_NAME",
-                                        "value": "${MYSQL_DB_NAME}"
+                                        "name": "RAILS_DB_ADAPTER",
+                                        "value": "${RAILS_DB_ADAPTER}"
                                     },
                                     {
-                                        "name": "DATABASE_HOST",
-                                        "value": "${MYSQL_DB_HOST}"
+                                        "name": "RAILS_DB_NAME",
+                                        "value": "${RAILS_DB_NAME}"
                                     },
                                     {
-                                        "name": "DATABASE_USERNAME",
-                                        "value": "${MYSQL_DB_USERNAME}"
+                                        "name": "RAILS_DB_HOST",
+                                        "value": "${RAILS_DB_HOST}"
                                     },
                                     {
-                                        "name": "DATABASE_PASSWORD",
-                                        "value": "${MYSQL_DB_PASSWORD}"
+                                        "name": "RAILS_DB_USERNAME",
+                                        "value": "${RAILS_DB_USERNAME}"
+                                    },
+                                    {
+                                        "name": "RAILS_DB_PASSWORD",
+                                        "value": "${RAILS_DB_PASSWORD}"
                                     },
                                     {
                                         "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
@@ -520,20 +516,24 @@
                                         "value": "${RAILS_MAIL_IMAP_PASSWORD}"
                                     },
                                     {
-                                        "name": "DATABASE_NAME",
-                                        "value": "${MYSQL_DB_NAME}"
+                                        "name": "RAILS_DB_NAME",
+                                        "value": "${RAILS_DB_NAME}"
                                     },
                                     {
-                                        "name": "DATABASE_HOST",
-                                        "value": "${MYSQL_DB_HOST}"
+                                        "name": "RAILS_DB_HOST",
+                                        "value": "${RAILS_DB_HOST}"
                                     },
                                     {
-                                        "name": "DATABASE_USERNAME",
-                                        "value": "${MYSQL_DB_USERNAME}"
+                                        "name": "RAILS_DB_USERNAME",
+                                        "value": "${RAILS_DB_USERNAME}"
                                     },
                                     {
-                                        "name": "DATABASE_PASSWORD",
-                                        "value": "${MYSQL_DB_PASSWORD}"
+                                        "name": "RAILS_DB_PASSWORD",
+                                        "value": "${RAILS_DB_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "RAILS_DB_ADAPTER",
+                                        "value": "${RAILS_DB_ADAPTER}"
                                     }
                                 ],
                                 "resources": {},
@@ -627,19 +627,19 @@
                                 "env": [
                                     {
                                         "name": "MYSQL_USER",
-                                        "value": "${MYSQL_DB_USERNAME}"
+                                        "value": "${RAILS_DB_USERNAME}"
                                     },
                                     {
                                         "name": "MYSQL_PASSWORD",
-                                        "value": "${MYSQL_DB_PASSWORD}"
+                                        "value": "${RAILS_DB_PASSWORD}"
                                     },
                                     {
                                         "name": "MYSQL_SERVICE_HOST",
-                                        "value": "mysql"
+                                        "value": "${RAILS_DB_HOST}"
                                     },
                                     {
                                         "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DB_NAME}"
+                                        "value": "${RAILS_DB_NAME}"
                                     }
                                 ],
                                 "resources": {},
@@ -833,27 +833,32 @@
             "description": "The external hostname (redmine.puzzle.ch) that will route to the statusnet service, if left blank a value will be defaulted."
         },
         {
-            "name": "MYSQL_DB_HOST",
+            "name": "RAILS_DB_ADAPTER",
+            "description": "Database adapter",
+            "value": "mysql2"
+        },
+        {
+            "name": "RAILS_DB_HOST",
             "description": "Database host name",
             "value": "mysql"
         },
         {
-            "name": "MYSQL_DB_PORT",
+            "name": "RAILS_DB_PORT",
             "description": "Database port",
             "value": "3306"
         },
         {
-            "name": "MYSQL_DB_NAME",
+            "name": "RAILS_DB_NAME",
             "description": "Database name",
             "value": "redmine"
         },
         {
-            "name": "MYSQL_DB_USERNAME",
+            "name": "RAILS_DB_USERNAME",
             "description": "Database user name",
             "value": "redmine"
         },
         {
-            "name": "MYSQL_DB_PASSWORD",
+            "name": "RAILS_DB_PASSWORD",
             "description": "Database user password",
             "value": "redmine"
         },

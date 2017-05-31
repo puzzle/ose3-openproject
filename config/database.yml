@@ -1,9 +1,7 @@
-production:
-  adapter: <%= ENV['DB_ADAPTER'] ||= 'mysql2' %>
-  database: <%= ENV['DATABASE_NAME'] ||= 'redmine' %>
-  host: <%= ENV['DATABASE_HOST'] ||= 'mysql' %>
-  username: <%= ENV['DATABASE_USERNAME'] ||= 'redmine' %>
-  password: <%= ENV['DATABASE_PASSWORD'] ||= 'redmine' %>
+base: &generic
+  adapter: <%= ENV['RAILS_DB_ADAPTER'] || 'sqlite3' %>
+  pool: 20
+  timeout: 5000
   encoding: utf8
   variables:
     # These are the default MySql Modes for rails 5.0 only excluding
@@ -18,9 +16,23 @@ production:
       error_for_division_by_zero,\
       no_auto_create_user,\
       no_engine_substitution"
+<% %w(host port username password socket).each do |option| %>
+  <% value = ENV["RAILS_DB_#{option.upcase}"] %>
+  <%= "#{option}: #{value}" if value.present? %>
+<% end %>
+
 
 development:
-  adapter: sqlite3
-  database: ":memory:"
-  pool: 5
-  timeout: 5000
+  <<: *generic
+  database: <%= ENV['RAILS_DB_NAME'] || "#{Rails.root}/db/development.sqlite3" %>
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *generic
+  database: <%= ENV['RAILS_TEST_DB_NAME'] || ENV['RAILS_DB_NAME'] || "#{Rails.root}/db/test.sqlite3" %>
+
+production:
+  <<: *generic
+  database: <%= ENV['RAILS_DB_NAME'] || "#{Rails.root}/db/production.sqlite3" %>
