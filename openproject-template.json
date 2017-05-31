@@ -280,7 +280,17 @@
                                     "-c",
                                     "/opt/app-root/bin/deploy.sh"
                                 ],
-                                "containerName": "openproject"
+                                "containerName": "openproject",
+                                "env": [
+                                    {
+                                        "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
+                                        "value": "${OPENPROJECT_PLUGIN_DOCUMENTS}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_PLUGIN_BACKLOGS",
+                                        "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
+                                    }
+                                ]
                             }
 
                         }
