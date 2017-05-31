@@ -81,17 +81,10 @@
                 "strategy": {
                     "type": "Source",
                     "sourceStrategy": {
-                        "env": [
-                            {
-                                "name": "DISABLE_ASSET_COMPILATION",
-                                "value": "true"
-                            }
-                        ],
                         "from": {
                             "kind": "ImageStreamTag",
                             "name": "ose3-openproject:latest"
-                        },
-                        "incremental": true
+                        }
                     }
                 },
                 "output": {
