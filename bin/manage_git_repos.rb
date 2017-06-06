@@ -38,7 +38,7 @@ def init(repo)
 end
 
 Repository.all.each do |repo|
-  next unless repo.type = 'Repository::Git'
+  next unless repo.type == 'Repository::Git'
   puts "repo: #{repo.url} project: #{repo.project}"
 
   if repo.url =~ /^http/

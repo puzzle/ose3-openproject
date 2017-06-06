@@ -75,7 +75,7 @@
                     "type": "Git",
                     "git": {
                         "uri": "https://github.com/opf/openproject",
-                        "ref": "v6.1.5"
+                        "ref": "${OPENPROJECT_VERSION}"
                     }
                 },
                 "strategy": {
@@ -799,7 +799,7 @@
         {
             "name": "OPENPROJECT_VERSION",
             "description": "The release tag of Openproject on Github",
-            "value": "v6.1.5"
+            "value": "v7.0.0"
         },
         {
             "name": "APPLICATION_DOMAIN",
@@ -851,7 +851,7 @@
         },
         {
             "name": "OPENPROJECT_MANAGED_REPOS",
-            "description": "Enable managed repositories (seperate Apache config needed)",
+            "description": "Enable managed repositories",
             "value": "false"
         },
         {
