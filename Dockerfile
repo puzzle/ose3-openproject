@@ -1,4 +1,4 @@
-FROM puzzle/ose3-rails:pure-23
+FROM puzzle/ose3-rails:pure-24
 
 ENV RAILS_ENV production
 ENV SECRET_KEY_BASE aienhat423490g8iretuk
@@ -17,13 +17,14 @@ COPY apache-repos.conf /etc/httpd/conf.d/
 RUN yum install -y epel-release \
  && yum -y update \
  && yum -y install python python-devel python-pip git subversion \
- && scl enable rh-nodejs4 "npm install -g npm@4.0 bower" \
- && scl enable rh-ruby23 "gem install bundler" \
+ && scl enable rh-nodejs6 "npm install -g npm@4.0" \
  && pip install devcron \
  && git config --global user.name Openshift \
  && git config --global user.email systems@puzzle.ch \
+ && mkdir /etc/httpd/Apache \
  && chown -R 1001:1001 /tmp/src \
  && chown -R 1001:1001 /opt/app-root \
+ && chown -R 1001:1001 /etc/httpd/Apache \
  && chmod -R o+x /opt/app-root/bin
 
 USER 1001

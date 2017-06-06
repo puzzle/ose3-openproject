@@ -1,6 +1,7 @@
 #!/bin/bash
+set -xe
 
-sed -ie '/^\s*links.*api_experimental_query_path(query).*$/ { N; d; }' app/controllers/api/experimental/concerns/query_loading.rb
+cp /opt/app-root/src/extra/Apache/OpenProjectAuthentication.pm /etc/httpd/Apache
 
 # delete existing directory
 rm -rf /opt/app-root/src/files
