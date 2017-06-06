@@ -57,3 +57,9 @@ Upload Files in directory ./files into the container /opt/app-root/data
 ```
 $ oc rsync files redmine-5-376ju:/opt/app-root/data
 ```
+
+
+
+docker run --rm -it -p 8080:8080 -e RAILS_DB_NAME=redmine -e RAILS_DB_USERNAME=root -e RAILS_DB_PASSWORD=root -e RAILS_DB_HOST=openproject-mysql -e RAILS_DB_ADAPTER=mysql2 --link openproject-mysql openproject-s2i
+
+

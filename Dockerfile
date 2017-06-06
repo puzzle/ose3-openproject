@@ -12,6 +12,7 @@ COPY etc/ /opt/app-root/etc/
 COPY .s2i/ /tmp/src/.s2i
 COPY config/ /tmp/src/config
 COPY Gemfile.plugins /tmp/src
+COPY apache-repos.conf /etc/httpd/conf.d/
 
 RUN yum install -y epel-release \
  && yum -y update \
