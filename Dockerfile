@@ -8,10 +8,10 @@ USER root
 WORKDIR /opt/app-root/src
 
 COPY bin/ /opt/app-root/bin/
-COPY etc/ /opt/app-root/etc/
-COPY .s2i/ /tmp/src/.s2i
-COPY config/ /tmp/src/config
-COPY Gemfile.plugins /tmp/src
+COPY .s2i/ /tmp/src/.s2i/
+COPY config/ /tmp/src/config/
+COPY crontab /etc/
+COPY Gemfile.plugins /tmp/src/
 COPY apache-repos.conf /etc/httpd/conf.d/
 
 RUN yum install -y epel-release \
