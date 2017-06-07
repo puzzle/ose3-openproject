@@ -377,6 +377,20 @@
                                         "mountPath": "/opt/app-root/data"
                                     }
                                 ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "httpGet": {
+                                            "path": "/",
+                                            "port": "8080",
+                                            "schema": "HTTP"
+                                        }
+                                    },
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 5,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 4
+                                },
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
                             }
@@ -755,7 +769,7 @@
                 }
             },
             "spec": {
-                "dockerImageRepository": "puzzle/mysql-simple-backup-container"
+                "dockerImageRepository": "appuio/mysql-simple-backup-container"
             }
         },
         {
