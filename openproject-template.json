@@ -334,6 +334,10 @@
                                         "value": "${OPENPROJECT_VERSION}"
                                     },
                                     {
+                                        "name": "OPENPROJECT_API_KEY",
+                                        "value": "${OPENPROJECT_API_KEY}"
+                                    },
+                                    {
                                         "name": "RAILS_DB_ADAPTER",
                                         "value": "${RAILS_DB_ADAPTER}"
                                     },
@@ -853,6 +857,10 @@
             "name": "OPENPROJECT_MANAGED_REPOS",
             "description": "Enable managed repositories",
             "value": "false"
+        },
+        {
+            "name": "OPENPROJECT_API_KEY",
+            "description": "API key for repositories (auto generated, must be updated in webgui)"
         },
         {
             "name": "OPENPROJECT_PLUGIN_BACKLOGS",
