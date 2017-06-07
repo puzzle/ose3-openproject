@@ -10,7 +10,7 @@ WORKDIR /opt/app-root/src
 COPY bin/ /opt/app-root/bin/
 COPY .s2i/ /tmp/src/.s2i/
 COPY config/ /tmp/src/config/
-COPY crontab /etc/
+COPY crontab /opt/app-root/etc/
 COPY Gemfile.plugins /tmp/src/
 COPY apache-repos.conf /etc/httpd/conf.d/
 

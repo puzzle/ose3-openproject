@@ -477,7 +477,7 @@
                                     "devcron.py"
                                 ],
                                 "args": [
-                                    "/etc/crontab"
+                                    "/opt/app-root/etc/crontab"
                                 ],
                                 "ports": [
                                     {
