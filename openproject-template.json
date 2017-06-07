@@ -800,7 +800,7 @@
             "kind": "Route",
             "apiVersion": "v1",
             "metadata": {
-                "name": "ssl",
+                "name": "extern",
                 "creationTimestamp": null,
                 "labels": {
                     "app": "openproject"
@@ -814,10 +814,6 @@
                 },
                 "port": {
                     "targetPort": "8080-tcp"
-                },
-                "tls": {
-                    "termination": "edge",
-                    "insecureEdgeTerminationPolicy": "Redirect"
                 }
             },
             "status": {
