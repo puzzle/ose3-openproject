@@ -381,8 +381,7 @@
                                     "exec": {
                                         "httpGet": {
                                             "path": "/",
-                                            "port": "8080",
-                                            "schema": "HTTP"
+                                            "port": 8080
                                         }
                                     },
                                     "initialDelaySeconds": 5,
