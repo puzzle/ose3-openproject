@@ -867,11 +867,11 @@
         },
         {
             "name": "OPENPROJECT_SCM_GIT_DISABLED__TYPES",
-            "description": "Disabled types for Git (local, managed)"
+            "description": "Disabled types for Git ([local], [managed]) Must be array!"
         },
         {
             "name": "OPENPROJECT_SCM_SUBVERSION_DISABLED__TYPES",
-            "description": "Disabled types for Subversion (existing, managed)"
+            "description": "Disabled types for Subversion ([existing], [managed]) Must be array!"
         },
         {
             "name": "OPENPROJECT_SCM_GIT_MANAGES",
@@ -885,7 +885,9 @@
         },
         {
             "name": "OPENPROJECT_API_KEY",
-            "description": "API key for repositories (auto generated, must be updated in webgui)"
+            "description": "API key for repositories (auto generated, must be updated in webgui)",
+            "generate": "expression",
+            "from": "[a-zA-Z0-9]{20}"
         },
         {
             "name": "OPENPROJECT_PLUGIN_BACKLOGS",
