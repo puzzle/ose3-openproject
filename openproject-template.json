@@ -97,10 +97,6 @@
                             {
                                 "name": "OPENPROJECT_PLUGIN_BACKLOGS",
                                 "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
-                            },
-                            {
-                                "name": "OPENPROJECT_MANAGED_REPOS",
-                                "value": "${OPENPROJECT_MANAGED_REPOS}"
                             }
                         ]
                     }
@@ -336,6 +332,22 @@
                                     {
                                         "name": "OPENPROJECT_API_KEY",
                                         "value": "${OPENPROJECT_API_KEY}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_SCM_GIT_DISABLED__TYPES",
+                                        "value": "${OPENPROJECT_SCM_GIT_DISABLED__TYPES}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_SCM_GIT_MANAGES",
+                                        "value": "${OPENPROJECT_SCM_GIT_MANAGES}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_SCM_SUBVERSION_DISABLED__TYPES",
+                                        "value": "${OPENPROJECT_SCM_SUBVERSION_DISABLED__TYPES}"
+                                    },
+                                    {
+                                        "name": "OPENPROJECT_SCM_SUBVERSION_MANAGES",
+                                        "value": "${OPENPROJECT_SCM_SUBVERSION_MANAGES}"
                                     },
                                     {
                                         "name": "RAILS_DB_ADAPTER",
@@ -854,9 +866,24 @@
             "value": "true"
         },
         {
-            "name": "OPENPROJECT_MANAGED_REPOS",
-            "description": "Enable managed repositories",
-            "value": "false"
+            "name": "OPENPROJECT_SCM_GIT_DISABLED__TYPES",
+            "description": "Disabled types for Git (local, managed)",
+            "value": "managed"
+        },
+        {
+            "name": "OPENPROJECT_SCM_SUBVERSION_DISABLED__TYPES",
+            "description": "Disabled types for Subversion (existing, managed)",
+            "value": "managed"
+        },
+        {
+            "name": "OPENPROJECT_SCM_GIT_MANAGES",
+            "description": "Directory for managed Git repositories",
+            "value": "/opt/app-root/data/git"
+        },
+        {
+            "name": "OPENPROJECT_SCM_SUBVERSION_MANAGES",
+            "description": "Directory for managed Subversion repositories",
+            "value": "/opt/app-root/data/subversion"
         },
         {
             "name": "OPENPROJECT_API_KEY",
