@@ -867,13 +867,11 @@
         },
         {
             "name": "OPENPROJECT_SCM_GIT_DISABLED__TYPES",
-            "description": "Disabled types for Git (local, managed)",
-            "value": "managed"
+            "description": "Disabled types for Git (local, managed)"
         },
         {
             "name": "OPENPROJECT_SCM_SUBVERSION_DISABLED__TYPES",
-            "description": "Disabled types for Subversion (existing, managed)",
-            "value": "managed"
+            "description": "Disabled types for Subversion (existing, managed)"
         },
         {
             "name": "OPENPROJECT_SCM_GIT_MANAGES",
@@ -883,7 +881,7 @@
         {
             "name": "OPENPROJECT_SCM_SUBVERSION_MANAGES",
             "description": "Directory for managed Subversion repositories",
-            "value": "/opt/app-root/data/subversion"
+            "value": "/opt/app-root/data/svn"
         },
         {
             "name": "OPENPROJECT_API_KEY",

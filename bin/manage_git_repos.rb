@@ -38,27 +38,25 @@ def init(repo)
 end
 
 Repository.all.each do |repo|
-  next unless repo.type == 'Repository::Git'
+  # non-managed git repo. non-managed svn repos have a scm_type of existing
+  next unless repo.scm_type == 'local'
   puts "repo: #{repo.url} project: #{repo.project}"
 
-  if repo.url =~ /^http/
-      repo.url = repo.url.gsub(/^https?:../,'/opt/app-root/data/git/')
-      repo.root_url = repo.root_url.gsub(/^https?:../,'/opt/app-root/data/git/')
-      repo.save!
-      puts "repo updated: #{repo.url}"
-  end
+  # change git.puzzle.ch to gitlab.puzzle.ch
   if repo.url =~ /git\.puzzle\.ch/
       repo.url = repo.url.sub('git.puzzle.ch','gitlab.puzzle.ch')
       repo.root_url = repo.root_url.sub('git.puzzle.ch','gitlab.puzzle.ch')
       puts "repo updated: #{repo.url}"
       repo.save!
   end
+  # remove trailing .git
   if repo.url =~ /\/\.git\/?$/
       repo.url = repo.url.gsub(/\/\.git\/?$/,'')
       repo.root_url = repo.root_url.gsub(/\/\.git$/,'')
       puts "repo updated: #{repo.url}"
       repo.save!
   end
+  # migrate old paths
   unless repo.url =~ /^\/opt\/app-root\/data\/git/
       repo.url = repo.url.gsub(/^.*\/repositories/,'/opt/app-root/data/git')
       repo.root_url = repo.root_url.gsub(/^.*\/repositories/,'/opt/app-root/data/git')
