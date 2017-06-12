@@ -263,7 +263,8 @@
                                 "volumeMounts": [
                                     {
                                         "name": "mysql",
-                                        "mountPath": "/var/lib/mysql/data"
+                                        "mountPath": "/var/lib/mysql/data",
+                                        "subPath": "data"
                                     }
                                 ],
                                 "livenessProbe": {
@@ -704,13 +705,30 @@
                                     {
                                         "name": "MYSQL_DATABASE",
                                         "value": "${RAILS_DB_NAME}"
+                                    },
+                                    {
+                                        "name": "BACKUP_DATA_DIR",
+                                        "value": "${BACKUP_DATA_DIR}"
+                                    },
+                                    {
+                                        "name": "BACKUP_KEEP",
+                                        "value": "${BACKUP_KEEP}"
+                                    },
+                                    {
+                                        "name": "BACKUP_MINUTE",
+                                        "value": "${BACKUP_MINUTE}"
+                                    },
+                                    {
+                                        "name": "BACKUP_HOUR",
+                                        "value": "${BACKUP_HOUR}"
                                     }
                                 ],
                                 "resources": {},
                                 "volumeMounts": [
                                     {
                                         "name": "mysql",
-                                        "mountPath": "/opt/app-root/data/backup"
+                                        "mountPath": "${BACKUP_DATA_DIR}",
+                                        "subPath": "backup"
                                     }
                                 ],
                                 "terminationMessagePath": "/dev/termination-log",
@@ -1027,7 +1045,7 @@
         {
             "name": "OPENPROJECT_VERSION",
             "description": "The release tag of Openproject on Github",
-            "value": "v7.0.0"
+            "value": "v7.0.1"
         },
         {
             "name": "APPLICATION_DOMAIN",
@@ -1147,7 +1165,7 @@
         {
             "name": "BACKUP_DATA_DIR",
             "description": "Where to store the Backups, typically this directory would be a persistent Volume",
-            "value": "/opt/app-root/backup/"
+            "value": "/opt/app-root/backup"
         },
         {
             "name": "BACKUP_KEEP",

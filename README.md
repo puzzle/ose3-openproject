@@ -1,6 +1,6 @@
 # Puzzle Openproject on OpenShift V3
 
-The Openproject application has four containers: frontend, mysql (+backup) and a cron container. If managed repositories are used an additional Apache container is needed.
+The Openproject application has four containers: frontend/Apache, mysql (+backup) and a cron container.
 
 The state is saved into three persistent volumes:
 * MySQL Data (/var/lib/mysql/data) typically 2GB
@@ -23,11 +23,7 @@ $ oc new-project pitc-openproject-stg
 With persistent volumes and claims (mysql and uploads + repositories) make sure that gluster PVs with the given size(2 GB DB, 5GB Files) are available
 
 ```
-$ oc new-app -f openproject-template.json -p APPLICATION_DOMAIN_EXT=openproject-stg.puzzle.ch,RAILS_MAIL_IMAP_PASSWORD=***,GIT_CREDENTIALS_gitlab_puzzle_ch=hudson:***
-```
-If you are using managed repositories and would like to serve them via Apache:
-```
-$ oc new-app puzzle/ose3-openproject:apache -e OPENPROJECT_API_KEY=***
+$ oc new-app -f openproject-template.json -p APPLICATION_DOMAIN_EXT=domain.ch -p REDIRECT=other-domain.ch
 ```
 
 ## import mysql dump
