@@ -979,7 +979,6 @@
                 }
             },
             "spec": {
-                "host": "${APPLICATION_DOMAIN}",
                 "to": {
                     "kind": "Service",
                     "name": "openproject"
@@ -996,7 +995,7 @@
             "kind": "Route",
             "apiVersion": "v1",
             "metadata": {
-                "name": "extern",
+                "name": "openproject-ext",
                 "creationTimestamp": null,
                 "labels": {
                     "app": "openproject"
@@ -1020,7 +1019,7 @@
             "kind": "Route",
             "apiVersion": "v1",
             "metadata": {
-                "name": "redirect",
+                "name": "redirect-ext",
                 "creationTimestamp": null,
                 "labels": {
                     "app": "openproject"
@@ -1028,6 +1027,29 @@
             },
             "spec": {
                 "host": "${REDIRECT}",
+                "to": {
+                    "kind": "Service",
+                    "name": "redirect"
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                }
+            },
+            "status": {
+                "ingress": null
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "redirect",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
                 "to": {
                     "kind": "Service",
                     "name": "redirect"
@@ -1048,12 +1070,8 @@
             "value": "v7.0.1"
         },
         {
-            "name": "APPLICATION_DOMAIN",
-            "description": "The exposed hostname that will route to the statusnet service, if left blank a value will be defaulted."
-        },
-        {
             "name": "APPLICATION_DOMAIN_EXT",
-            "description": "The external hostname (redmine.puzzle.ch) that will route to the statusnet service, if left blank a value will be defaulted."
+            "description": "The external hostname (ticket.puzzle.ch) that will route to the openproject service, if left blank a value will be defaulted."
         },
         {
             "name": "RAILS_DB_ADAPTER",
