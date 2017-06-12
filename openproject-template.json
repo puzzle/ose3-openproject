@@ -115,6 +115,66 @@
             }
         },
         {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "redirect",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "N8U7f-VjSLVjZq6iJ1Sc"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "rpyzfE5XpZOhwnfkMUVs"
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange"
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/puzzle/ose3-redirect"
+                    }
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "nginx-18-centos7:latest"
+                        },
+                        "env": [
+                            {
+                                "name": "REDIRECT",
+                                "value": "${APPLICATION_DOMAIN_EXT}"
+                            }
+                        ]
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "redirect:latest"
+                    }
+                }
+            }
+        },
+        {
             "kind": "DeploymentConfig",
             "apiVersion": "v1",
             "metadata": {
@@ -667,6 +727,75 @@
             "status": {}
         },
         {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "redirect",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "redirect"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "redirect:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "deploymentconfig": "redirect"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "deploymentconfig": "redirect"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "redirect",
+                                "image": "redirect",
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {}
+        },
+        {
             "kind": "Service",
             "apiVersion": "v1",
             "metadata": {
@@ -726,6 +855,35 @@
             }
         },
         {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "redirect",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "openproject",
+                    "deploymentconfig": "redirect"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
@@ -770,6 +928,29 @@
             }
         },
         {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "redirect",
+                "labels": {
+                    "app": "openproject"
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "nginx-18-centos7",
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "dockerImageRepository": "centos/nginx-18-centos7"
+            }
+        },
+        {
             "kind": "Route",
             "apiVersion": "v1",
             "metadata": {
@@ -808,6 +989,30 @@
                 "to": {
                     "kind": "Service",
                     "name": "openproject"
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                }
+            },
+            "status": {
+                "ingress": null
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "redirect",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "openproject"
+                }
+            },
+            "spec": {
+                "host": "${REDIRECT}",
+                "to": {
+                    "kind": "Service",
+                    "name": "redirect"
                 },
                 "port": {
                     "targetPort": "8080-tcp"
@@ -958,6 +1163,10 @@
             "name": "BACKUP_HOUR",
             "description": "Cron Hour (eg. 11,19: every day at 11am and 7pm)",
             "value": "13,21"
+        },
+        {
+            "name": "REDIRECT",
+            "description": "URL to redirect"
         },
         {
             "name": "TZ",
