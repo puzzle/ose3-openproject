@@ -1,8 +1,8 @@
-FROM puzzle/ose3-rails:pure-24
+FROM puzzle/ose3-rails:pure-241
 
 ENV RAILS_ENV production
 ENV SECRET_KEY_BASE aienhat423490g8iretuk
-ENV OPENPROJECT_VERSION v6.1.5
+ENV OPENPROJECT_VERSION v7.1.0
 
 USER root
 WORKDIR /opt/app-root/src

@@ -1,8 +1,6 @@
 #!/bin/bash
 set -xe
 
-# don't understand why ~> 2.4.1 fails if we have 2.4.0?
-sed -i /^ruby/d /tmp/src/Gemfile
 # run bundle to generate lockfile or else build
 # will fail when bundle is called with --deployment
 # this is mainly because plugins are set with
