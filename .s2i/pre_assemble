@@ -6,8 +6,9 @@ set -xe
 # this is mainly because plugins are set with
 # environment variables in Gemfile.plugins
 cd /tmp/src && bundle --path bundle
+
 # delete resulting .bundle/cache or else there is
 # a conflict with /tmp/src/.bundle/config
 # when copying in assemble script
 rm -rf /opt/app-root/src/.bundle
-cd /tmp/src/frontend && scl enable nodejs010 "npm install"
+cd /tmp/src/frontend && npm install
