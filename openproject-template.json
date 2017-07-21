@@ -83,7 +83,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "ose3-openproject:latest"
+                            "name": "ose3-openproject:${OPENPROJECT_VERSION}"
                         },
                         "env": [
                             {
@@ -104,7 +104,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "openproject:latest"
+                        "name": "openproject:${OPENPROJECT_VERSION}"
                     }
                 },
                 "resources": {},
@@ -161,7 +161,7 @@
                         "env": [
                             {
                                 "name": "REDIRECT",
-                                "value": "${APPLICATION_DOMAIN_EXT}"
+                                "value": "${APPLICATION_DOMAIN}"
                             }
                         ]
                     }
@@ -344,7 +344,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "openproject:latest"
+                                "name": "openproject:${OPENPROJECT_VERSION}"
                             }
                         }
                     }
@@ -501,7 +501,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "openproject:latest"
+                                "name": "openproject:${OPENPROJECT_VERSION}"
                             }
                         }
                     }
@@ -923,10 +923,13 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "${OPENPROJECT_VERSION}",
                         "from": {
                             "kind": "DockerImage",
                             "name": "puzzle/ose3-openproject"
+                        },
+                        "importPolicy": {
+                            "scheduled": true
                         }
                     }
                 ]
@@ -1002,7 +1005,7 @@
                 }
             },
             "spec": {
-                "host": "${APPLICATION_DOMAIN_EXT}",
+                "host": "${APPLICATION_DOMAIN}",
                 "to": {
                     "kind": "Service",
                     "name": "openproject"
@@ -1070,7 +1073,7 @@
             "value": "v7.1.0"
         },
         {
-            "name": "APPLICATION_DOMAIN_EXT",
+            "name": "APPLICATION_DOMAIN",
             "description": "The external hostname (ticket.puzzle.ch) that will route to the openproject service, if left blank a value will be defaulted."
         },
         {
@@ -1140,7 +1143,7 @@
         {
             "name": "OPENPROJECT_PLUGIN_BACKLOGS",
             "description": "Enable backlogs plugin",
-            "value": "true"
+            "value": "false"
         },
         {
             "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
