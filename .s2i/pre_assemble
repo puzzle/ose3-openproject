@@ -5,7 +5,7 @@ set -xe
 # will fail when bundle is called with --deployment
 # this is mainly because plugins are set with
 # environment variables in Gemfile.plugins
-cd /tmp/src && bundle --path bundle
+cd /tmp/src && bundle --path bundle --without development test
 
 # delete resulting .bundle/cache or else there is
 # a conflict with /tmp/src/.bundle/config
