@@ -251,6 +251,14 @@
                                         "value": "${RAILS_DB_PASSWORD}"
                                     },
                                     {
+                                        "name": "MYSQL_INNODB_LOG_FILE_SIZE",
+                                        "value": "32M"
+                                    },
+                                    {
+                                        "name": "MYSQL_INNODB_LOG_BUFFER_SIZE",
+                                        "value": "32M"
+                                    },
+                                    {
                                         "name": "MYSQL_DATABASE",
                                         "value": "${RAILS_DB_NAME}"
                                     }
