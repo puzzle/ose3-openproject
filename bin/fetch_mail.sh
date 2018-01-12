@@ -17,7 +17,10 @@ if [ -n "${REDMINE_MAIL_INTEGRATION}" ]; then
   if [ -n "${RAILS_MAIL_IMAP_PASSWORD}" ]; then
     IMAP_SETTINGS="${IMAP_SETTINGS} password=${RAILS_MAIL_IMAP_PASSWORD}"
   fi
-  IMAP_SETTINGS="${IMAP_SETTINGS} allow_override=project,tracker,status,priority,category,assigned_to,fixed_version,start_date,due_date,estimated_hours,done_ratio"
+  if [ -n "${RAILS_MAIL_IMAP_DEFAULT_WORKPACKAGE}" ]; then
+    IMAP_SETTINGS="${IMAP_SETTINGS} ${RAILS_MAIL_IMAP_DEFAULT_WORKPACKAGE}"
+  fi
+  IMAP_SETTINGS="${IMAP_SETTINGS} allow_override=project,tracker,type,status,priority,category,assigned_to,fixed_version,start_date,due_date,estimated_hours,done_ratio"
   bundle exec rake redmine:email:receive_imap $IMAP_SETTINGS
 else
   echo "Mail cron is disabled set ENV REDMINE_MAIL_INTEGRATION to enable Fetch Mail cron job"
