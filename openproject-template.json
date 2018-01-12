@@ -581,6 +581,10 @@
                                         "value": "${RAILS_MAIL_IMAP_PASSWORD}"
                                     },
                                     {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_WORKPACKAGE",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_WORKPACKAGE}"
+                                    },
+                                    {
                                         "name": "RAILS_DB_NAME",
                                         "value": "${RAILS_DB_NAME}"
                                     },
