@@ -581,8 +581,24 @@
                                         "value": "${RAILS_MAIL_IMAP_PASSWORD}"
                                     },
                                     {
-                                        "name": "RAILS_MAIL_IMAP_DEFAULT_WORKPACKAGE",
-                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_WORKPACKAGE}"
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_PROJECT}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_TYPE}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_STATUS}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_PRIORITY}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_VERSION}"
                                     },
                                     {
                                         "name": "RAILS_DB_NAME",
@@ -1182,6 +1198,31 @@
         {
             "name": "RAILS_MAIL_IMAP_PASSWORD",
             "description": "Incoming Imap password"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT",
+            "description": "Default project for workpackage creation by incoming Mail",
+            "value": "pitc-infra"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE",
+            "description": "Default typefor workpackage creation by incoming Mail",
+            "value": "Support"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULTS_STATUS",
+            "description": "Default status for workpackage creation by incoming Mail",
+            "value": "New"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULTS_PRIORITY",
+            "description": "Default priority for workpackage creation by incoming Mail",
+            "value": "Normal"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULTS_VERSION",
+            "description": "Default version for workpackage creation by incoming Mail",
+            "value": "Incoming"
         },
         {
             "name": "GIT_CREDENTIALS_gitlab_puzzle_ch",
