@@ -17,8 +17,20 @@ if [ -n "${REDMINE_MAIL_INTEGRATION}" ]; then
   if [ -n "${RAILS_MAIL_IMAP_PASSWORD}" ]; then
     IMAP_SETTINGS="${IMAP_SETTINGS} password=${RAILS_MAIL_IMAP_PASSWORD}"
   fi
-  if [ -n "${RAILS_MAIL_IMAP_DEFAULT_WORKPACKAGE}" ]; then
-    IMAP_SETTINGS="${IMAP_SETTINGS} ${RAILS_MAIL_IMAP_DEFAULT_WORKPACKAGE}"
+  if [ -n "${RAILS_MAIL_IMAP_DEFAULT_PROJECT}" ]; then
+    IMAP_SETTINGS="${IMAP_SETTINGS} project=${RAILS_MAIL_IMAP_DEFAULT_PROJECT}"
+  fi
+  if [ -n "${RAILS_MAIL_IMAP_DEFAULT_TYPE}" ]; then
+    IMAP_SETTINGS="${IMAP_SETTINGS} type=${RAILS_MAIL_IMAP_DEFAULT_TYPE}"
+  fi
+  if [ -n "${RAILS_MAIL_IMAP_DEFAULT_STATUS}" ]; then
+    IMAP_SETTINGS="${IMAP_SETTINGS} status=${RAILS_MAIL_IMAP_DEFAULT_STATUS}"
+  fi
+  if [ -n "${RAILS_MAIL_IMAP_DEFAULT_PRIORITY}" ]; then
+    IMAP_SETTINGS="${IMAP_SETTINGS} priority=${RAILS_MAIL_IMAP_DEFAULT_PRIORITY}"
+  fi
+  if [ -n "${RAILS_MAIL_IMAP_DEFAULT_VERSION}" ]; then
+    IMAP_SETTINGS="${IMAP_SETTINGS} fixed_version=${RAILS_MAIL_IMAP_DEFAULT_VERSION}"
   fi
   IMAP_SETTINGS="${IMAP_SETTINGS} allow_override=project,tracker,type,status,priority,category,assigned_to,fixed_version,start_date,due_date,estimated_hours,done_ratio"
   bundle exec rake redmine:email:receive_imap $IMAP_SETTINGS
