@@ -1210,17 +1210,17 @@
             "value": "Support"
         },
         {
-            "name": "RAILS_MAIL_IMAP_DEFAULTS_STATUS",
+            "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS",
             "description": "Default status for workpackage creation by incoming Mail",
             "value": "New"
         },
         {
-            "name": "RAILS_MAIL_IMAP_DEFAULTS_PRIORITY",
+            "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY",
             "description": "Default priority for workpackage creation by incoming Mail",
             "value": "Normal"
         },
         {
-            "name": "RAILS_MAIL_IMAP_DEFAULTS_VERSION",
+            "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION",
             "description": "Default version for workpackage creation by incoming Mail",
             "value": "Incoming"
         },
