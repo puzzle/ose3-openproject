@@ -1,7 +1,7 @@
 version = ENV['OPENPROJECT_VERSION'][1] # 2nd char: v6.1.5
 if ENV['OPENPROJECT_PLUGIN_BACKLOGS'] == 'true'
-    gem "openproject-backlogs", git: "https://github.com/finnlabs/openproject-backlogs.git", :tag => "ENV['OPENPROJECT_VERSION']"
-    gem "openproject-pdf_export", git: "https://github.com/finnlabs/openproject-pdf_export.git", :tag => "ENV['OPENPROJECT_VERSION']"
+    gem "openproject-backlogs", git: "https://github.com/finnlabs/openproject-backlogs.git", :tag => ENV['OPENPROJECT_VERSION']
+    gem "openproject-pdf_export", git: "https://github.com/finnlabs/openproject-pdf_export.git", :tag => ENV['OPENPROJECT_VERSION']
 end
 if ENV['OPENPROJECT_PLUGIN_DOCUMENTS'] == 'true'
     gem "openproject-documents", git: "https://github.com/opf/openproject-documents.git", :branch => "stable/#{version}"
