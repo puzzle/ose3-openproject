@@ -32,6 +32,9 @@ if [ -n "${REDMINE_MAIL_INTEGRATION}" ]; then
   if [ -n "${RAILS_MAIL_IMAP_DEFAULT_VERSION}" ]; then
     IMAP_SETTINGS="${IMAP_SETTINGS} fixed_version=${RAILS_MAIL_IMAP_DEFAULT_VERSION}"
   fi
+  if [ -n "${RAILS_MAIL_IMAP_DEFAULT_MOVE}" ]; then
+    IMAP_SETTINGS="${IMAP_SETTINGS} move_on_success=${RAILS_MAIL_IMAP_DEFAULT_MOVE}"
+  fi
   IMAP_SETTINGS="${IMAP_SETTINGS} allow_override=project,tracker,type,status,priority,category,assigned_to,fixed_version,start_date,due_date,estimated_hours,done_ratio"
   bundle exec rake redmine:email:receive_imap $IMAP_SETTINGS
 else
