@@ -1325,7 +1325,7 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E1",
-            "description": "Default version for workpackage creation by incoming Mail Extra Account 1",
+            "description": "Default version for workpackage creation by incoming Mail Extra Account 1"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E1",
