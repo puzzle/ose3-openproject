@@ -601,6 +601,71 @@
                                         "value": "${RAILS_MAIL_IMAP_DEFAULT_VERSION}"
                                     },
                                     {
+                                        "name": "RAILS_MAIL_IMAP_USERNAME_E1",
+                                        "value": "${RAILS_MAIL_IMAP_USERNAME_E1}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_PASSWORD_E1",
+                                        "value": "${RAILS_MAIL_IMAP_PASSWORD_E1}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT_E1",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_PROJECT_E1}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE_E1",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_TYPE_E1}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS_E1",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_STATUS_E1}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E1",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E1}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E1",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_VERSION_E1}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E1",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_MOVE_E1}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_USERNAME_E2",
+                                        "value": "${RAILS_MAIL_IMAP_USERNAME_E2}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_PASSWORD_E2",
+                                        "value": "${RAILS_MAIL_IMAP_PASSWORD_E2}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT_E2",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_PROJECT_E2}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE_E2",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_TYPE_E2}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS_E2",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_STATUS_E2}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E2",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E2}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E2",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_VERSION_E2}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E2",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_MOVE_E2}"
+                                    },
+
+                                    {
                                         "name": "RAILS_DB_NAME",
                                         "value": "${RAILS_DB_NAME}"
                                     },
@@ -1193,7 +1258,7 @@
         {
             "name": "RAILS_MAIL_IMAP_USERNAME",
             "description": "Incoming Imap user",
-            "value": "redmine@puzzle.ch"
+            "value": "help@puzzle.ch"
         },
         {
             "name": "RAILS_MAIL_IMAP_PASSWORD",
@@ -1223,6 +1288,88 @@
             "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION",
             "description": "Default version for workpackage creation by incoming Mail",
             "value": "Incoming"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE",
+            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail",
+            "value": "Processed"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_USERNAME_E1",
+            "description": "Incoming Imap user Extra Account 1",
+            "value": "ideenbox@puzzle.ch"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_PASSWORD_E1",
+            "description": "Incoming Imap password Extra Account 1"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT_E1",
+            "description": "Default project for workpackage creation by incoming Mail Extra Account 1",
+            "value": "q-meldungen"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE_E1",
+            "description": "Default typefor workpackage creation by incoming Mail Extra Account 1",
+            "value": "Feature"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS_E1",
+            "description": "Default status for workpackage creation by incoming Mail Extra Account 1",
+            "value": "New"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E1",
+            "description": "Default priority for workpackage creation by incoming Mail Extra Account 1",
+            "value": "Normal"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E1",
+            "description": "Default version for workpackage creation by incoming Mail Extra Account 1",
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E1",
+            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 1",
+            "value": "Processed"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_USERNAME_E2",
+            "description": "Incoming Imap user Extra Account 2",
+            "value": "sys-slog-support@puzzle.ch"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_PASSWORD_E2",
+            "description": "Incoming Imap password Extra Account 2"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT_E2",
+            "description": "Default project for workpackage creation by incoming Mail Extra Account 2",
+            "value": "pitc-infra"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE_E2",
+            "description": "Default typefor workpackage creation by incoming Mail Extra Account 2",
+            "value": "Support"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS_E2",
+            "description": "Default status for workpackage creation by incoming Mail Extra Account 2",
+            "value": "New"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E2",
+            "description": "Default priority for workpackage creation by incoming Mail Extra Account 2",
+            "value": "Normal"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E2",
+            "description": "Default version for workpackage creation by incoming Mail Extra Account 2",
+            "value": "Incoming-SLOG"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E2",
+            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 2",
+            "value": "Processed"
         },
         {
             "name": "GIT_CREDENTIALS_gitlab_puzzle_ch",
