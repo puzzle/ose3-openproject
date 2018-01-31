@@ -664,7 +664,6 @@
                                         "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E2",
                                         "value": "${RAILS_MAIL_IMAP_DEFAULT_MOVE_E2}"
                                     },
-
                                     {
                                         "name": "RAILS_DB_NAME",
                                         "value": "${RAILS_DB_NAME}"
@@ -1155,7 +1154,7 @@
         {
             "name": "OPENPROJECT_VERSION",
             "description": "The release tag of Openproject on Github",
-            "value": "v7.1.0"
+            "value": "v7.2.3"
         },
         {
             "name": "APPLICATION_DOMAIN",
