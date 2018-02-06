@@ -1273,13 +1273,11 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_HOST",
-            "description": "Incoming Mail Host server host",
-            "value": "mail.puzzle.ch"
+            "description": "Incoming Mail Host server host"
         },
         {
             "name": "RAILS_MAIL_IMAP_PORT",
-            "description": "Incoming  Mail port",
-            "value": "993"
+            "description": "Incoming  Mail port"
         },
         {
             "name": "RAILS_MAIL_IMAP_SSL",
@@ -1288,8 +1286,7 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_USERNAME",
-            "description": "Incoming Imap user",
-            "value": "ticket@puzzle.ch"
+            "description": "Incoming Imap user"
         },
         {
             "name": "RAILS_MAIL_IMAP_PASSWORD",
@@ -1297,8 +1294,7 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT",
-            "description": "Default project for workpackage creation by incoming Mail",
-            "value": "pitc-infra"
+            "description": "Default project for workpackage creation by incoming Mail"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE",
@@ -1306,13 +1302,11 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS",
-            "description": "Default status for workpackage creation by incoming Mail",
-            "value": "New"
+            "description": "Default status for workpackage creation by incoming Mail"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY",
-            "description": "Default priority for workpackage creation by incoming Mail",
-            "value": "Normal"
+            "description": "Default priority for workpackage creation by incoming Mail"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION",
@@ -1320,13 +1314,11 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE",
-            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail",
-            "value": "Processed"
+            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail"
         },
         {
             "name": "RAILS_MAIL_IMAP_USERNAME_E1",
-            "description": "Incoming Imap user Extra Account 1",
-            "value": "ideenbox@puzzle.ch"
+            "description": "Incoming Imap user Extra Account 1"
         },
         {
             "name": "RAILS_MAIL_IMAP_PASSWORD_E1",
@@ -1334,23 +1326,19 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT_E1",
-            "description": "Default project for workpackage creation by incoming Mail Extra Account 1",
-            "value": "q-meldungen"
+            "description": "Default project for workpackage creation by incoming Mail Extra Account 1"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE_E1",
-            "description": "Default typefor workpackage creation by incoming Mail Extra Account 1",
-            "value": "Feature"
+            "description": "Default typefor workpackage creation by incoming Mail Extra Account 1"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS_E1",
-            "description": "Default status for workpackage creation by incoming Mail Extra Account 1",
-            "value": "New"
+            "description": "Default status for workpackage creation by incoming Mail Extra Account 1"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E1",
-            "description": "Default priority for workpackage creation by incoming Mail Extra Account 1",
-            "value": "Normal"
+            "description": "Default priority for workpackage creation by incoming Mail Extra Account 1"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E1",
@@ -1358,13 +1346,11 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E1",
-            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 1",
-            "value": "Processed"
+            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 1"
         },
         {
             "name": "RAILS_MAIL_IMAP_USERNAME_E2",
-            "description": "Incoming Imap user Extra Account 2",
-            "value": "sys-slog-support@puzzle.ch"
+            "description": "Incoming Imap user Extra Account 2"
         },
         {
             "name": "RAILS_MAIL_IMAP_PASSWORD_E2",
@@ -1372,38 +1358,31 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT_E2",
-            "description": "Default project for workpackage creation by incoming Mail Extra Account 2",
-            "value": "pitc-infra"
+            "description": "Default project for workpackage creation by incoming Mail Extra Account 2"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE_E2",
-            "description": "Default typefor workpackage creation by incoming Mail Extra Account 2",
-            "value": "Support"
+            "description": "Default typefor workpackage creation by incoming Mail Extra Account 2"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS_E2",
-            "description": "Default status for workpackage creation by incoming Mail Extra Account 2",
-            "value": "New"
+            "description": "Default status for workpackage creation by incoming Mail Extra Account 2"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E2",
-            "description": "Default priority for workpackage creation by incoming Mail Extra Account 2",
-            "value": "Normal"
+            "description": "Default priority for workpackage creation by incoming Mail Extra Account 2"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E2",
-            "description": "Default version for workpackage creation by incoming Mail Extra Account 2",
-            "value": "Incoming-SLOG"
+            "description": "Default version for workpackage creation by incoming Mail Extra Account 2"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E2",
-            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 2",
-            "value": "Processed"
+            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 2"
         },
         {
             "name": "RAILS_MAIL_IMAP_USERNAME_E3",
-            "description": "Incoming Imap user Extra Account 3",
-            "value": "help@puzzle.ch"
+            "description": "Incoming Imap user Extra Account 3"
         },
         {
             "name": "RAILS_MAIL_IMAP_PASSWORD_E3",
@@ -1411,33 +1390,27 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT_E3",
-            "description": "Default project for workpackage creation by incoming Mail Extra Account 3",
-            "value": "pitc-infra"
+            "description": "Default project for workpackage creation by incoming Mail Extra Account 3"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE_E3",
-            "description": "Default typefor workpackage creation by incoming Mail Extra Account 3",
-            "value": "Support"
+            "description": "Default typefor workpackage creation by incoming Mail Extra Account 3"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS_E3",
-            "description": "Default status for workpackage creation by incoming Mail Extra Account 3",
-            "value": "New"
+            "description": "Default status for workpackage creation by incoming Mail Extra Account 3"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E3",
-            "description": "Default priority for workpackage creation by incoming Mail Extra Account 3",
-            "value": "Normal"
+            "description": "Default priority for workpackage creation by incoming Mail Extra Account 3"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E3",
-            "description": "Default version for workpackage creation by incoming Mail Extra Account 3",
-            "value": "Incoming"
+            "description": "Default version for workpackage creation by incoming Mail Extra Account 3"
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E3",
-            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 3",
-            "value": "Processed"
+            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 3"
         },
         {
             "name": "GIT_CREDENTIALS_gitlab_puzzle_ch",
