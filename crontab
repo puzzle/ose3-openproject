@@ -1,4 +1,4 @@
-*/5 * * * * /opt/app-root/bin/fetch_mail.sh
-*/5 * * * * /opt/app-root/bin/fetch_mail_extra.sh
-*/5 * * * * /opt/app-root/bin/delayed_jobs.sh
+*/3 * * * * /opt/app-root/bin/fetch_mail.sh
+*/3 * * * * /opt/app-root/bin/fetch_mail_extra.sh
+*/3 * * * * /opt/app-root/bin/delayed_jobs.sh
 */15 * * * * /opt/app-root/bin/manage_git_repos.sh
