@@ -601,6 +601,10 @@
                                         "value": "${RAILS_MAIL_IMAP_DEFAULT_VERSION}"
                                     },
                                     {
+                                        "name": "RAILS_MAIL_IMAP_NUMBER_OF_ACCOUNTS",
+                                        "value": "${RAILS_MAIL_IMAP_NUMBER_OF_ACCOUNTS}"
+                                    },
+                                    {
                                         "name": "RAILS_MAIL_IMAP_USERNAME_E1",
                                         "value": "${RAILS_MAIL_IMAP_USERNAME_E1}"
                                     },
@@ -1315,6 +1319,10 @@
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE",
             "description": "Default folder to moce processed mails for workpackage creation by incoming Mail"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_NUMBER_OF_ACCOUNTS",
+            "description": "Total number of extra mail accounts"
         },
         {
             "name": "RAILS_MAIL_IMAP_USERNAME_E1",
