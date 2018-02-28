@@ -1322,7 +1322,8 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_NUMBER_OF_ACCOUNTS",
-            "description": "Total number of extra mail accounts"
+            "description": "Total number of extra mail accounts",
+            "value": "4"
         },
         {
             "name": "RAILS_MAIL_IMAP_USERNAME_E1",
@@ -1418,6 +1419,38 @@
         },
         {
             "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E3",
+            "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 3"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_USERNAME_E4",
+            "description": "Incoming Imap user Extra Account 3"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_PASSWORD_E4",
+            "description": "Incoming Imap password Extra Account 3"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT_E4",
+            "description": "Default project for workpackage creation by incoming Mail Extra Account 3"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE_E4",
+            "description": "Default typefor workpackage creation by incoming Mail Extra Account 3"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS_E4",
+            "description": "Default status for workpackage creation by incoming Mail Extra Account 3"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E4",
+            "description": "Default priority for workpackage creation by incoming Mail Extra Account 3"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E4",
+            "description": "Default version for workpackage creation by incoming Mail Extra Account 3"
+        },
+        {
+            "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E4",
             "description": "Default folder to moce processed mails for workpackage creation by incoming Mail Extra Account 3"
         },
         {
