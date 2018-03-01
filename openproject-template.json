@@ -701,6 +701,37 @@
                                         "value": "${RAILS_MAIL_IMAP_DEFAULT_MOVE_E3}"
                                     },
                                     {
+                                        "name": "RAILS_MAIL_IMAP_USERNAME_E4",
+                                        "value": "${RAILS_MAIL_IMAP_USERNAME_E4}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_PASSWORD_E4",
+                                        "value": "${RAILS_MAIL_IMAP_PASSWORD_E4}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_PROJECT_E4",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_PROJECT_E4}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_TYPE_E4",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_TYPE_E4}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_STATUS_E4",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_STATUS_E4}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E4",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_PRIORITY_E4}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_VERSION_E4",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_VERSION_E4}"
+                                    },
+                                    {
+                                        "name": "RAILS_MAIL_IMAP_DEFAULT_MOVE_E4",
+                                        "value": "${RAILS_MAIL_IMAP_DEFAULT_MOVE_E4}"
+                                    },                                    {
                                         "name": "RAILS_DB_NAME",
                                         "value": "${RAILS_DB_NAME}"
                                     },
