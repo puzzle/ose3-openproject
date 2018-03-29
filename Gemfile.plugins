@@ -7,3 +7,5 @@ end
 if ENV['OPENPROJECT_PLUGIN_DOCUMENTS'] == 'true'
     gem "openproject-documents", :git => "https://github.com/opf/openproject-documents.git", :branch => "stable/#{version}"
 end
+
+gem 'sqlite3'
