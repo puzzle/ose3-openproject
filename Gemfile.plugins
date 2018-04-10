@@ -4,6 +4,11 @@ if ENV['OPENPROJECT_PLUGIN_BACKLOGS'] == 'true'
     gem "openproject-backlogs", :git => "https://github.com/finnlabs/openproject-backlogs.git", :tag => "#{ENV['OPENPROJECT_VERSION']}"
     gem "openproject-pdf_export", :git => "https://github.com/finnlabs/openproject-pdf_export.git", :tag => "#{ENV['OPENPROJECT_VERSION']}"
 end
+
+if ENV['OPENPROJECT_PLUGIN_OMNIAUTH'] == 'true'
+    gem "omniauth-openid_connect-providers", :git => "https://github.com/finnlabs/omniauth-openid_connect-providers.git", :branch => "dev"
+end
+
 if ENV['OPENPROJECT_PLUGIN_DOCUMENTS'] == 'true'
     gem "openproject-documents", :git => "https://github.com/opf/openproject-documents.git", :branch => "stable/#{version}"
 end

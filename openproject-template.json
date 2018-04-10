@@ -95,6 +95,10 @@
                                 "value": "${OPENPROJECT_PLUGIN_DOCUMENTS}"
                             },
                             {
+                                "name": "OPENPROJECT_PLUGIN_OMNIAUTH",
+                                "value": "${OPENPROJECT_PLUGIN_OMNIAUTH}"
+                            },
+                            {
                                 "name": "OPENPROJECT_PLUGIN_BACKLOGS",
                                 "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
                             }
@@ -1221,7 +1225,7 @@
         {
             "name": "OPENPROJECT_VERSION",
             "description": "The release tag of Openproject on Github",
-            "value": "v7.4.2"
+            "value": "v7.4.3"
         },
         {
             "name": "APPLICATION_DOMAIN",
@@ -1297,10 +1301,17 @@
             "value": "true"
         },
         {
+            "name": "OPENPROJECT_PLUGIN_OMNIAUTH",
+            "description": "Enable omniauth plugin",
+            "value": "true"
+        },
+
+        {
             "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
             "description": "Enable documents plugin",
             "value": "false"
         },
+
         {
             "name": "OPENPROJECT_STORAGE",
             "description": "Storage size for repositories and attachments",
