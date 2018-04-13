@@ -99,6 +99,18 @@
                                 "value": "${OPENPROJECT_PLUGIN_OMNIAUTH}"
                             },
                             {
+                                "name": "OPENPROJECT_PLUGIN_XLSEXPORT",
+                                "value": "${OPENPROJECT_PLUGIN_XLSEXPORT}"
+                            },
+                            {
+                                "name": "OPENPROJECT_PLUGIN_GLOBALROLES",
+                                "value": "${OPENPROJECT_PLUGIN_GLOBALROLES}"
+                            },
+                            {
+                                "name": "OPENPROJECT_PLUGIN_LDAPGROUPS",
+                                "value": "${OPENPROJECT_PLUGIN_LDAPGROUPS}"
+                            },
+                            {
                                 "name": "OPENPROJECT_PLUGIN_BACKLOGS",
                                 "value": "${OPENPROJECT_PLUGIN_BACKLOGS}"
                             }
@@ -1305,13 +1317,26 @@
             "description": "Enable omniauth plugin",
             "value": "true"
         },
-
+        {
+            "name": "OPENPROJECT_PLUGIN_XLSEXPORT",
+            "description": "Enable xls export plugin",
+            "value": "true"
+        },
+        {
+            "name": "OPENPROJECT_PLUGIN_GLOBALROLES",
+            "description": "Enable global roles plugin",
+            "value": "true"
+        },
+        {
+            "name": "OPENPROJECT_PLUGIN_LDAPGROUPS",
+            "description": "Enable ldap user and group sync plugin",
+            "value": "true"
+        },
         {
             "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
             "description": "Enable documents plugin",
             "value": "false"
         },
-
         {
             "name": "OPENPROJECT_STORAGE",
             "description": "Storage size for repositories and attachments",

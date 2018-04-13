@@ -6,14 +6,27 @@ if ENV['OPENPROJECT_PLUGIN_BACKLOGS'] == 'true'
 end
 
 if ENV['OPENPROJECT_PLUGIN_OMNIAUTH'] == 'true'
-    gem "openproject-auth_plugins", :git => 'https://github.com/finnlabs/openproject-auth_plugins', :tag => "#{ENV['OPENPROJECT_VERSION']}"
+    gem "openproject-auth_plugins", :git => 'https://github.com/finnlabs/openproject-auth_plugins', :branch => "dev"
     gem 'omniauth-openid-connect', :git => 'https://github.com/finnlabs/omniauth-openid-connect.git', :branch => "dev"
     gem "omniauth-openid_connect-providers", :git => "https://github.com/finnlabs/omniauth-openid_connect-providers.git", :branch => "dev"
-    gem 'openproject-openid_connect', :git => 'https://github.com/finnlabs/openproject-openid_connect.git', :tag => "#{ENV['OPENPROJECT_VERSION']}"
+    gem 'openproject-openid_connect', :git => 'https://github.com/finnlabs/openproject-openid_connect.git', :branch => "dev"
 end
 
 if ENV['OPENPROJECT_PLUGIN_DOCUMENTS'] == 'true'
     gem "openproject-documents", :git => "https://github.com/opf/openproject-documents.git", :branch => "stable/#{version}"
 end
+
+if ENV['OPENPROJECT_PLUGIN_XLSEXPORT'] == 'true'
+    gem "openproject-xls_export", git: "https://github.com/finnlabs/openproject-xls_export.git", :tag => "#{ENV['OPENPROJECT_VERSION']}"
+end
+
+if ENV['OPENPROJECT_PLUGIN_GLOBALROLES'] == 'true'
+    gem "openproject-global_roles", git: "https://github.com/finnlabs/openproject-global_roles.git", :tag => "#{ENV['OPENPROJECT_VERSION']}"
+end
+
+if ENV['OPENPROJECT_PLUGIN_LDAPGROUPS'] == 'true'
+    gem "openproject-ldap_groups", git: "https://github.com/finnlabs/openproject-ldap_groups.git", :tag => "#{ENV['OPENPROJECT_VERSION']}"
+end
+
 
 gem 'sqlite3'
