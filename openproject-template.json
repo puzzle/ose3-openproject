@@ -1343,54 +1343,54 @@
             "value": "30Gi"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_PROVIDER",
+            "name": "RAILS_OMNIAUTH_PROVIDER",
             "description": "Omniauth Provider ID"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_PORT",
-            "description": "Omniauth ",
+            "name": "RAILS_OMNIAUTH_PORT",
+            "description": "Omniauth Port",
             "value": "443"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_SCHEME",
-            "description": "Omniauth Scheme",
+            "name": "RAILS_OMNIAUTH_SCHEME",
+            "description": "Omniauth http Scheme",
             "value": "https"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_HOST",
+            "name": "RAILS_OMNIAUTH_HOST",
             "description": "Omniauth Host of Provider"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_CLIENT_ID",
+            "name": "RAILS_OMNIAUTH_CLIENT_ID",
             "description": "Omniauth Client ID"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_SECRET_KEY",
+            "name": "RAILS_OMNIAUTH_SECRET_KEY",
             "description": "Omniauth Secret Key"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_REDIRECT_URI",
+            "name": "RAILS_OMNIAUTH_REDIRECT_URI",
             "description": "Omniauth Redirct URI after authentification"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_AUTHORIZATION_ENDPOINT",
+            "name": "RAILS_OMNIAUTH_AUTHORIZATION_ENDPOINT",
             "description": "Omniauth Authorization Endpoint"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_TOKEN_ENDPOINT",
+            "name": "RAILS_OMNIAUTH_TOKEN_ENDPOINT",
             "description": "Omniauth Token Endpoint"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_USERINFO_ENDPOINT",
+            "name": "RAILS_OMNIAUTH_USERINFO_ENDPOINT",
             "description": "Omniauth Userinfo Endpoint"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_SSO",
+            "name": "RAILS_OMNIAUTH_SSO",
             "description": "Omniauth Enable Single-Sign-On",
             "value": "true"
         },
         {
-            "name": "RAILS_MAIL_OMNIAUTH_ISSUER",
+            "name": "RAILS_OMNIAUTH_ISSUER",
             "description": "Omniauth Single-Sign-On Issuer"
         },
         {
