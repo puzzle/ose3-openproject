@@ -43,5 +43,7 @@ config.omniauth :openid_connect, {
     userinfo_endpoint: ENV['RAILS_OMNIAUTH_USERINFO_ENDPOINT'],
     sso: ENV['RAILS_OMNIAUTH_SSO'],
     issuer: ENV['RAILS_OMNIAUTH_ISSUER'],
+    end_session_endpoint: ENV['RAILS_OMNIAUTH_END_SESSION_ENDPOINT'],
+    check_session_iframe: ENV['RAILS_OMNIAUTH_CHECK_SESSION_IFRAME'],
   },
 }

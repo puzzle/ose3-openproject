@@ -1398,6 +1398,14 @@
             "description": "Omniauth Single-Sign-On Issuer"
         },
         {
+            "name": "RAILS_OMNIAUTH_END_SESSION_ENDPOINT",
+            "description": "Omniauth SSO end session endpoint"
+        },
+        {
+            "name": "RAILS_OMNIAUTH_CHECK_SESSION_IFRAME",
+            "description": "Omniauth SSO check session iframe"
+        },
+        {
             "name": "RAILS_MAIL_IMAP_HOST",
             "description": "Incoming Mail Host server host"
         },
