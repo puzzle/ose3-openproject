@@ -1361,6 +1361,10 @@
             "description": "Omniauth Host of Provider"
         },
         {
+            "name": "RAILS_OMNIAUTH_DISPLAY_NAME",
+            "description": "Omniauth display name of Provider in auth-button"
+        },
+        {
             "name": "RAILS_OMNIAUTH_CLIENT_ID",
             "description": "Omniauth Client ID"
         },

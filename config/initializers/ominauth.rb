@@ -35,6 +35,7 @@ config.omniauth :openid_connect, {
     scheme: ENV['RAILS_OMNIAUTH_SCHEME'],
     host: ENV['RAILS_OMNIAUTH_HOST'],
     identifier: ENV["RAILS_OMNIAUTH_CLIENT_ID"],
+    display_name: ENV["RAILS_OMNIAUTH_DISPLAY_NAME"],
     secret: ENV["RAILS_OMNIAUTH_SECRET_KEY"],
     redirect_uri: ENV["RAILS_OMNIAUTH_REDIRECT_URI"],
     authorization_endpoint: ENV['RAILS_OMNIAUTH_AUTHORIZATION_ENDPOINT'],
