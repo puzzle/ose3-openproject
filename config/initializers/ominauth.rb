@@ -26,7 +26,8 @@
 # See doc/COPYRIGHT.rdoc for more details.
 #++
 
-config.omniauth :openid_connect, {
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :openid_connect,
   name: ENV['RAILS_OMNIAUTH_PROVIDER'],
   scope: [:openid, :email, :profile],
   response_type: :code,
@@ -45,5 +46,5 @@ config.omniauth :openid_connect, {
     issuer: ENV['RAILS_OMNIAUTH_ISSUER'],
     end_session_endpoint: ENV['RAILS_OMNIAUTH_END_SESSION_ENDPOINT'],
     check_session_iframe: ENV['RAILS_OMNIAUTH_CHECK_SESSION_IFRAME'],
-  },
-}
+  }
+end
