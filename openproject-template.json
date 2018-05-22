@@ -95,20 +95,12 @@
                                 "value": "${OPENPROJECT_PLUGIN_DOCUMENTS}"
                             },
                             {
-                                "name": "OPENPROJECT_PLUGIN_OMNIAUTH",
-                                "value": "${OPENPROJECT_PLUGIN_OMNIAUTH}"
-                            },
-                            {
                                 "name": "OPENPROJECT_PLUGIN_XLSEXPORT",
                                 "value": "${OPENPROJECT_PLUGIN_XLSEXPORT}"
                             },
                             {
                                 "name": "OPENPROJECT_PLUGIN_GLOBALROLES",
                                 "value": "${OPENPROJECT_PLUGIN_GLOBALROLES}"
-                            },
-                            {
-                                "name": "OPENPROJECT_PLUGIN_LDAPGROUPS",
-                                "value": "${OPENPROJECT_PLUGIN_LDAPGROUPS}"
                             },
                             {
                                 "name": "OPENPROJECT_PLUGIN_BACKLOGS",
@@ -1313,24 +1305,14 @@
             "value": "true"
         },
         {
-            "name": "OPENPROJECT_PLUGIN_OMNIAUTH",
-            "description": "Enable omniauth plugin",
-            "value": "true"
-        },
-        {
             "name": "OPENPROJECT_PLUGIN_XLSEXPORT",
             "description": "Enable xls export plugin",
-            "value": "true"
+            "value": "false"
         },
         {
             "name": "OPENPROJECT_PLUGIN_GLOBALROLES",
             "description": "Enable global roles plugin",
-            "value": "true"
-        },
-        {
-            "name": "OPENPROJECT_PLUGIN_LDAPGROUPS",
-            "description": "Enable ldap user and group sync plugin",
-            "value": "true"
+            "value": "false"
         },
         {
             "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
@@ -1341,69 +1323,6 @@
             "name": "OPENPROJECT_STORAGE",
             "description": "Storage size for repositories and attachments",
             "value": "30Gi"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_PROVIDER",
-            "description": "Omniauth Provider ID"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_PORT",
-            "description": "Omniauth Port",
-            "value": "443"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_SCHEME",
-            "description": "Omniauth http Scheme",
-            "value": "https"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_HOST",
-            "description": "Omniauth Host of Provider"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_DISPLAY_NAME",
-            "description": "Omniauth display name of Provider in auth-button"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_CLIENT_ID",
-            "description": "Omniauth Client ID"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_SECRET_KEY",
-            "description": "Omniauth Secret Key"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_REDIRECT_URI",
-            "description": "Omniauth Redirct URI after authentification"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_AUTHORIZATION_ENDPOINT",
-            "description": "Omniauth Authorization Endpoint"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_TOKEN_ENDPOINT",
-            "description": "Omniauth Token Endpoint"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_USERINFO_ENDPOINT",
-            "description": "Omniauth Userinfo Endpoint"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_SSO",
-            "description": "Omniauth Enable Single-Sign-On",
-            "value": "true"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_ISSUER",
-            "description": "Omniauth Single-Sign-On Issuer"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_END_SESSION_ENDPOINT",
-            "description": "Omniauth SSO end session endpoint"
-        },
-        {
-            "name": "RAILS_OMNIAUTH_CHECK_SESSION_IFRAME",
-            "description": "Omniauth SSO check session iframe"
         },
         {
             "name": "RAILS_MAIL_IMAP_HOST",
