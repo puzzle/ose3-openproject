@@ -1237,7 +1237,7 @@
         {
             "name": "OPENPROJECT_VERSION",
             "description": "The release tag of Openproject on Github",
-            "value": "v7.4.4"
+            "value": "v7.4.5"
         },
         {
             "name": "APPLICATION_DOMAIN",
@@ -1330,7 +1330,7 @@
         {
             "name": "OPENPROJECT_PLUGIN_LDAPGROUPS",
             "description": "Enable ldap user and group sync plugin",
-            "value": "true"
+            "value": "false"
         },
         {
             "name": "OPENPROJECT_PLUGIN_DOCUMENTS",
