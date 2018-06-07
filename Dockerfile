@@ -14,11 +14,11 @@ COPY crontab /opt/app-root/etc/
 COPY Gemfile.plugins /tmp/src/
 COPY apache-repos.conf /etc/httpd/conf.d/
 
-RUN yum install -y epel-release \
- && yum -y update \
- && yum -y install python python-devel python-pip mod_perl mod_dav_svn git subversion perl-Digest-SHA perl-libwww-perl \
- && /bin/bash -c "npm install -g npm@4.0" \
- && pip install devcron \
+RUN yum install -y epel-release 
+RUN yum -y update 
+RUN yum -y install python python-devel python-pip mod_perl mod_dav_svn git subversion perl-Digest-SHA perl-libwww-perl
+RUN /bin/bash -c "npm install -g npm@4.0"
+RUN pip install devcron \
  && git config --global user.name Openshift \
  && git config --global user.email systems@puzzle.ch \
  && mkdir /etc/httpd/Apache \
