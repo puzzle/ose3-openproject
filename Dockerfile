@@ -17,7 +17,7 @@ COPY apache-repos.conf /etc/httpd/conf.d/
 RUN yum install -y epel-release 
 RUN yum -y update 
 RUN yum -y install python python-devel python-pip mod_perl mod_dav_svn git subversion perl-Digest-SHA perl-libwww-perl
-RUN npm i -g npm-upgrade
+RUN /bin/bash -c "npm install -g npm-upgrade"
 RUN /bin/bash -c "npm install -g npm@4.0"
 RUN pip install devcron \
  && git config --global user.name Openshift \
