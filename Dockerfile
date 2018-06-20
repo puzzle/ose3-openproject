@@ -17,7 +17,6 @@ COPY apache-repos.conf /etc/httpd/conf.d/
 RUN yum install -y epel-release \
  && yum -y update \
  && yum -y install python python-devel python-pip mod_perl mod_dav_svn git subversion perl-Digest-SHA perl-libwww-perl \
- && /bin/bash -c "npm install -g npm@4.0" \
  && pip install devcron \
  && git config --global user.name Openshift \
  && git config --global user.email systems@puzzle.ch \
