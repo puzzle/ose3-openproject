@@ -39,6 +39,22 @@ $ oc rsh mysql-1-03k47
 sh-4.2$
 $ mysql -uroot redmine < /tmp/dump/dump.sql
 ```
+## create database if no dump is available
+
+First log into the mysql pod and manually create the database:
+```
+oc rsh mysql-podname
+sh-4.2$ mysql -uUSERNAME -pPASSOWRD;
+mysql> CREATE DATABASE yourdatabasename;
+```
+
+Then log into the openproject pod and let the rake scripts create the db structure and seed the db (with optional LOCALE=en/fr/de etc)
+```
+oc rsh openproject-podname
+$ RAILS_ENV="production" bundle exec rake db:migrate
+sh-4.2$ RAILS_ENV="production" LOCALE=de bundle exec rake db:seed
+sh-4.2$ RAILS_ENV="production" bundle exec rake assets:precompile
+```
 
 ## upload files
 ```
