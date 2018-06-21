@@ -1,4 +1,4 @@
-FROM puzzle/ose3-rails:pure-244
+FROM puzzle/ose3-rails:pure-250
 
 ENV RAILS_ENV production
 ENV SECRET_KEY_BASE aienhat423490g8iretuk
