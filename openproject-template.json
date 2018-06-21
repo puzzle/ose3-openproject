@@ -1294,7 +1294,7 @@
         {
             "name": "OPENPROJECT_VERSION",
             "description": "The release tag of Openproject on Github",
-            "value": "v7.4.5"
+            "value": "dev"
         },
         {
             "name": "APPLICATION_DOMAIN",
